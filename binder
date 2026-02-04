@@ -1,9 +1,0 @@
-#!/bin/bash
-set -e
-
-# Rendi non scrivibili i dati e i notebook (evita cancellazioni “per sbaglio”)
-chmod -R a-w data notebooks
-
-# Lascia scrivibile una cartella di lavoro per output degli studenti
-mkdir -p work results
-chmod -R a+w work results
