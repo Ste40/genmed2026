@@ -1,0 +1,4 @@
+##gff-version 3
+mock_chromosome	mock	gene	1	600	.	+	.	ID=gene1;Name=gene1
+mock_chromosome	mock	gene	801	1300	.	+	.	ID=gene2;Name=gene2
+mock_chromosome	mock	gene	1501	2200	.	+	.	ID=gene3;Name=gene3
