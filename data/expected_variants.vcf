@@ -1,5 +1,0 @@
-##fileformat=VCFv4.2
-##source=genmed_training
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
-chr1	101	.	T	A	50	PASS	DP=20
-chr1	301	.	A	C	50	PASS	DP=20
