@@ -1,12 +1,26 @@
-# Corso di Bioinformatica 2026
+# Hands-on session nell'ambito del progetto scuola diffusa D3 4H
 
-Questo repository contiene il materiale per un corso intensivo di **bioinformatica** della durata di 8 ore. Le lezioni prevedono una parte teorica e numerose attività pratiche svolte in ambiente Jupyter tramite [Binder](https://mybinder.org).
+Questa sessione ha l'obiettivo di fornire conoscenze base per la manipolazione ed analisi di dati comunemente utilizzati in bioinformatica. 
+Il corso prevede una parte teorica e attività pratiche. 
+Gli obiettivi formativi dell'attività pratica sono:
+
+1. Fornire conoscenze di base dell'ambiente UNIX e riga di comando bash.
+2. Acquisire familiarità con i formati di file comunemente utilizzati in bioinformatica.
+3. Fornire conoscenze di base per l'interpretazione di un report QC generato tramite il software fastqc.
+4. Analizzare dei sequenziamenti: dal fastq al vcf
+5. Fornire conoscenze di base nella manipolazione dei file ed interpretazione dei risultati.
+
+L'attività pratica è erogata svolte in ambiente Jupyter tramite [Binder](https://mybinder.org).
 
 ## Requisiti
 
-Il materiale è pensato per essere eseguito su Binder. Per avviare l'ambiente è sufficiente cliccare sul badge (da aggiungere) o visitare il link generato da Binder per questa repository. I file di configurazione (`environment.yml`) descrivono l'ambiente software necessario.
+Il materiale è pensato per essere eseguito su Binder. Per avviare l'ambiente è sufficiente seguire le istruzioni:
 
-**Attenzione**: la piattaforma mybinder.org garantisce almeno **1 GB** di RAM per sessione, fino a un massimo di **2 GB**; le sessioni inattive per più di 10 minuti vengono terminate e la durata massima raccomandata è di **6 ore**【368043342158028†L70-L86】. Si consiglia di lavorare con dataset piccoli e di salvare regolarmente i risultati.
+1. Copiare l'URL di questa pagina (https://github.com/Ste40/genmed2026)
+2. Incollarlo nell'apposito campo su [Binder](https://mybinder.org).
+3. Cliccare "launch" ed attendere che si apra l'applicazione (potrebbero volerci diversi minuti).
+
+**Attenzione**: la piattaforma mybinder.org garantisce almeno **1 GB** di RAM per sessione, fino a un massimo di **2 GB**; le sessioni inattive per più di 10 minuti vengono terminate.
 
 ## Contenuto
 
