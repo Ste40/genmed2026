@@ -1,28 +1,26 @@
 # Hands-on session nell'ambito del progetto scuola diffusa D3 4H
 
-Questa sessione ha l'obiettivo di fornire conoscenze base per la manipolazione ed analisi di dati comunemente utilizzati in bioinformatica. 
-Il corso prevede una parte teorica e attività pratiche. 
-Gli obiettivi formativi dell'attività pratica sono:
+Questa esercitazione introduce i concetti fondamentali della bioinformatica applicata al sequenziamento NGS, con un approccio pratico in ambiente UNIX/Bash.
 
-1. Fornire conoscenze di base dell'ambiente UNIX e riga di comando bash.
-2. Acquisire familiarità con i formati di file comunemente utilizzati in bioinformatica.
-3. Fornire conoscenze di base per l'interpretazione di un report QC generato tramite il software fastqc.
-4. Analizzare dei sequenziamenti: dal fastq al vcf
-5. Fornire conoscenze di base nella manipolazione dei file ed interpretazione dei risultati.
+## Obiettivi formativi
 
-L'attività pratica è erogata svolte in ambiente Jupyter tramite [Binder](https://mybinder.org).
+1. Acquisire familiarità con shell Bash e file system.
+2. Comprendere i formati principali (FASTA, FASTQ, SAM/BAM, VCF, BED/GFF).
+3. Eseguire e interpretare un controllo qualità (QC) su reads grezze.
+4. Comprendere il flusso completo FASTQ → allineamento → varianti.
+5. Leggere criticamente output, metriche e file prodotti dagli strumenti.
 
-## Requisiti
+---
 
-Il materiale è pensato per essere eseguito su Binder. Per avviare l'ambiente è sufficiente seguire le istruzioni:
+## Requisiti e avvio ambiente
 
-1. Copiare l'URL di questa pagina (https://github.com/Ste40/genmed2026)
-2. Incollarlo nell'apposito campo su [Binder](https://mybinder.org).
-3. Cliccare "launch" ed attendere che si apra l'applicazione (potrebbero volerci diversi minuti).
+Il materiale è pensato per Binder:
 
-**Attenzione**: la piattaforma mybinder.org garantisce almeno **1 GB** di RAM per sessione, fino a un massimo di **2 GB**; le sessioni inattive per più di 10 minuti vengono terminate.
+1. Copiare l'URL del repository: `https://github.com/Ste40/genmed2026`
+2. Incollarlo su [mybinder.org](https://mybinder.org)
+3. Cliccare **Launch**
 
-## Contenuto
+> Nota: mybinder.org garantisce tipicamente almeno 1 GB RAM (fino a circa 2 GB) e chiude sessioni inattive.
 
 - `environment.yml` — definisce l'ambiente conda con tutti i pacchetti necessari (python, fastqc, bwa, samtools, bcftools, bedtools, R e pacchetti utili).
 - `data/` — contiene un piccolo **dataset di esempio**:
@@ -35,12 +33,11 @@ Il materiale è pensato per essere eseguito su Binder. Per avviare l'ambiente è
   3. **03_alignment.ipynb** — allineamento delle reads con BWA e uso di samtools per conversione e statistiche.
   4. **04_variant_calling.ipynb** — chiamata delle varianti con bcftools e confronto con il file atteso.
 
-## Istruzioni per l'uso
+## Struttura del repository
 
-1. Avviare l'ambiente Binder cliccando sul badge fornito (o utilizzando il link nel file `README`).
-2. Una volta avviato, aprire i notebook nell'ordine indicato nella cartella `notebooks/`. Ogni notebook contiene spiegazioni e celle di codice da eseguire.
-3. Durante l'esecuzione dei comandi assicurarsi di non superare i limiti di memoria di Binder. Il dataset fornito è progettato per consumare poche risorse.
-4. Salvare regolarmente le modifiche ai notebook (`File → Save Notebook`) e scaricare eventuali file di output che si desidera conservare.
+- `binder/environment.yml` — ambiente software dell'esercitazione.
+- `data/` — dataset di esempio (reads, riferimento e file di supporto).
+- `GUIDA_TOOLS.md` — guida descrittiva dei tool usati nel workflow, con input/output, metriche e file prodotti.
 
 
 ## Gestione del repository
@@ -70,13 +67,15 @@ Su GitHub conviene anche attivare **Settings → General → Pull Requests → A
 
 ## Mini esercitazioni
 
-Oltre agli esercizi inclusi nei notebook, si propongono alcune esercitazioni aggiuntive:
+## Come usare il materiale
 
-- **Ricerca e sostituzione**: usando `grep` e `sed`, trova tutte le reads che contengono una determinata sequenza (es. `GATC`) e sostituiscila con `NNNN` in un file copiato di `sample.fastq`.
-- **Filtraggio per qualità**: scrivi un piccolo script Bash che scorre il file FASTQ e mantiene solo le reads con lunghezza ≥ 80 bp e qualità media ≥ 30.
-- **Analisi delle coverage**: usa `bedtools genomecov` per calcolare la copertura media sul riferimento. Qual è la profondità media delle reads nel dataset?
-- **Estensione**: cerca un dataset reale (es. un campione dal [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra)) e ripeti il flusso completo (FastQC → allineamento → chiamata varianti) lavorando su un sottocampione (ad esempio 10.000 reads). Quali sono le differenze rispetto al dataset simulato?
+Le istruzioni operative dei comandi sono state riportate nei singoli casi/esercizi.
+Per una visione d'insieme dei software usati e del significato dei risultati, consulta:
+
+➡️ **[GUIDA_TOOLS.md](GUIDA_TOOLS.md)**
+
+---
 
 ## Note finali
 
-Questo materiale è rilasciato con licenza Creative Commons (CC BY 4.0). Sentiti libero di modificarlo e riutilizzarlo citando la fonte. Per domande o suggerimenti, apri un problema (issue) nel repository o contatta il docente.
+Materiale rilasciato con licenza Creative Commons (CC BY 4.0).
