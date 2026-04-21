@@ -1,56 +1,63 @@
 # Hands-on session nell'ambito del progetto scuola diffusa D3 4H
 
-Questa sessione ha l'obiettivo di fornire conoscenze base per la manipolazione ed analisi di dati comunemente utilizzati in bioinformatica. 
-Il corso prevede una parte teorica e attività pratiche. 
-Gli obiettivi formativi dell'attività pratica sono:
+Questa sessione fornisce competenze di base per la manipolazione e l'analisi di dati bioinformatici tramite workflow completo **FASTQ → BAM → VCF**.
 
-1. Fornire conoscenze di base dell'ambiente UNIX e riga di comando bash.
-2. Acquisire familiarità con i formati di file comunemente utilizzati in bioinformatica.
-3. Fornire conoscenze di base per l'interpretazione di un report QC generato tramite il software fastqc.
-4. Analizzare dei sequenziamenti: dal fastq al vcf
-5. Fornire conoscenze di base nella manipolazione dei file ed interpretazione dei risultati.
+## Obiettivi formativi
 
-L'attività pratica è erogata svolte in ambiente Jupyter tramite [Binder](https://mybinder.org).
+1. Usare comandi base UNIX/Bash in modo autonomo.
+2. Riconoscere e manipolare i formati bioinformatici principali (FASTQ, FASTA, BAM, VCF).
+3. Interpretare un report di quality control con FastQC.
+4. Eseguire un'analisi end-to-end: allineamento, post-processing e variant calling.
+5. Applicare filtri e ragionare criticamente sui risultati finali.
 
-## Requisiti
+L'attività pratica è erogata in ambiente Jupyter tramite [myBinder](https://mybinder.org).
 
-Il materiale è pensato per essere eseguito su Binder. Per avviare l'ambiente è sufficiente seguire le istruzioni:
+## Avvio su Binder
 
-1. Copiare l'URL di questa pagina (https://github.com/Ste40/genmed2026)
-2. Incollarlo nell'apposito campo su [Binder](https://mybinder.org).
-3. Cliccare "launch" ed attendere che si apra l'applicazione (potrebbero volerci diversi minuti).
+1. Copia l'URL del repository: `https://github.com/Ste40/genmed2026`
+2. Incollalo su [myBinder](https://mybinder.org)
+3. Premi **Launch** e attendi l'avvio
 
-**Attenzione**: la piattaforma mybinder.org garantisce almeno **1 GB** di RAM per sessione, fino a un massimo di **2 GB**; le sessioni inattive per più di 10 minuti vengono terminate.
+> **Nota risorse myBinder**: in genere 1–2 GB RAM/sessione e timeout di inattività ~10 minuti. I dataset inclusi sono volutamente piccoli.
 
-## Contenuto
+## Struttura del repository
 
-- `environment.yml` — definisce l'ambiente conda con tutti i pacchetti necessari (python, fastqc, bwa, samtools, bcftools, bedtools, R e pacchetti utili).
-- `data/` — contiene un piccolo **dataset di esempio**:
-  - `reference.fa`: sequenza di riferimento (500 bp) del cromosoma 1.
-  - `sample.fastq`: 50 reads simulate con lunghezza 100 bp, contenenti varianti artificiali.
-  - `expected_variants.vcf`: file VCF con le varianti attese per la verifica dei risultati.
-- `notebooks/` — quattro notebook Jupyter che guidano attraverso le varie fasi:
-  1. **01_bash_intro.ipynb** — comandi di base della shell Bash e manipolazione di file di testo.
-  2. **02_fastqc_analysis.ipynb** — esecuzione di FastQC e interpretazione dei report【265213121619552†L40-L60】.
-  3. **03_alignment.ipynb** — allineamento delle reads con BWA e uso di samtools per conversione e statistiche.
-  4. **04_variant_calling.ipynb** — chiamata delle varianti con bcftools e confronto con il file atteso.
+- `binder/environment.yml` — ambiente Conda con tool principali (`fastqc`, `bwa`, `samtools`, `bcftools`, `seqtk`, `seqkit`, `cutadapt`, ecc.).
+- `data/reference/` — riferimento genomico e annotazioni:
+  - `mock_reference.fa`
+  - `mock_annotation.gff`
+  - `causative_variants.tsv` (varianti attese per tutti i casi)
+- `data/dataset1...dataset10/` — 10 FASTQ toy per esercitazioni.
+- `notebooks/` — notebook introduttivi su Bash, QC, allineamento e variant calling.
+- `cases/` — nuovi casi studio pronti all'uso:
+  - `cases/main/` (5 casi principali)
+  - `cases/reserve/` (5 casi di riserva)
 
-## Istruzioni per l'uso
+## Nuovo pacchetto casi studio (5 + 5)
 
-1. Avviare l'ambiente Binder cliccando sul badge fornito (o utilizzando il link nel file `README`).
-2. Una volta avviato, aprire i notebook nell'ordine indicato nella cartella `notebooks/`. Ogni notebook contiene spiegazioni e celle di codice da eseguire.
-3. Durante l'esecuzione dei comandi assicurarsi di non superare i limiti di memoria di Binder. Il dataset fornito è progettato per consumare poche risorse.
-4. Salvare regolarmente le modifiche ai notebook (`File → Save Notebook`) e scaricare eventuali file di output che si desidera conservare.
+Per assegnare un caso a ciascuno dei 5 partecipanti e mantenere 5 alternative:
 
-## Mini esercitazioni
+- Casi principali: `cases/main/case01_...md` → `case05_...md`
+- Casi riserva: `cases/reserve/case06_...md` → `case10_...md`
 
-Oltre agli esercizi inclusi nei notebook, si propongono alcune esercitazioni aggiuntive:
+Ogni caso contiene:
 
-- **Ricerca e sostituzione**: usando `grep` e `sed`, trova tutte le reads che contengono una determinata sequenza (es. `GATC`) e sostituiscila con `NNNN` in un file copiato di `sample.fastq`.
-- **Filtraggio per qualità**: scrivi un piccolo script Bash che scorre il file FASTQ e mantiene solo le reads con lunghezza ≥ 80 bp e qualità media ≥ 30.
-- **Analisi delle coverage**: usa `bedtools genomecov` per calcolare la copertura media sul riferimento. Qual è la profondità media delle reads nel dataset?
-- **Estensione**: cerca un dataset reale (es. un campione dal [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra)) e ripeti il flusso completo (FastQC → allineamento → chiamata varianti) lavorando su un sottocampione (ad esempio 10.000 reads). Quali sono le differenze rispetto al dataset simulato?
+1. scenario del problema bioinformatico
+2. workflow completo con comandi shell
+3. strategia di pulizia/filtraggio dati
+4. controlli di qualità e confronto risultati
+5. traccia per discussione finale
 
-## Note finali
+Indice completo: `cases/README.md`.
 
-Questo materiale è rilasciato con licenza Creative Commons (CC BY 4.0). Sentiti libero di modificarlo e riutilizzarlo citando la fonte. Per domande o suggerimenti, apri un problema (issue) nel repository o contatta il docente.
+## Suggerimento didattico
+
+Assegna un caso per studente (1–5) e usa i casi 6–10 per:
+
+- recupero in caso di imprevisti
+- approfondimento per studenti più veloci
+- discussione comparativa su trade-off di filtro (sensibilità vs specificità)
+
+## Licenza
+
+Materiale rilasciato con licenza Creative Commons (CC BY 4.0).

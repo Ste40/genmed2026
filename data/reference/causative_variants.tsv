@@ -1,7 +1,12 @@
-
 sample	gene	position_1based	ref	alt
 sample1	gene1	100	T	A
 sample2	gene2	850	G	T
 sample3	gene3	1520	C	G
 sample4	gene1	300	A	C
 sample5	gene2	900	T	A
+sample6	gene2	850	G	T
+sample7	gene1	100	T	A
+sample7	gene1	300	A	C
+sample8	gene3	1520	C	G
+sample9	gene2	900	T	A
+sample10	gene1	300	A	C
