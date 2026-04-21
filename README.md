@@ -10,8 +10,6 @@ Questa sessione fornisce competenze di base per la manipolazione e l'analisi di 
 4. Eseguire un'analisi end-to-end: allineamento, post-processing e variant calling.
 5. Applicare filtri e ragionare criticamente sui risultati finali.
 
-L'attività pratica è erogata in ambiente Jupyter tramite [myBinder](https://mybinder.org).
-
 ## Avvio su Binder
 
 1. Copia l'URL del repository: `https://github.com/Ste40/genmed2026`
@@ -22,41 +20,25 @@ L'attività pratica è erogata in ambiente Jupyter tramite [myBinder](https://my
 
 ## Struttura del repository
 
-- `binder/environment.yml` — ambiente Conda con tool principali (`fastqc`, `bwa`, `samtools`, `bcftools`, `seqtk`, `seqkit`, `cutadapt`, ecc.).
-- `data/reference/` — riferimento genomico e annotazioni:
-  - `mock_reference.fa`
-  - `mock_annotation.gff`
-  - `causative_variants.tsv` (varianti attese per tutti i casi)
-- `data/dataset1...dataset10/` — 10 FASTQ toy per esercitazioni.
+- `binder/environment.yml` — ambiente Conda con tutti i tool necessari all'esercitazione.
+- `data/reference/` — riferimento genomico, annotazione e tabella varianti attese.
+- `data/dataset1...dataset10/` — FASTQ toy per esercitazioni.
 - `notebooks/` — notebook introduttivi su Bash, QC, allineamento e variant calling.
-- `cases/` — nuovi casi studio pronti all'uso:
-  - `cases/main/` (5 casi principali)
-  - `cases/reserve/` (5 casi di riserva)
+- `cases/`:
+  - `cases/students/` → casi didattici **anonimizzati** per studenti
+  - `cases/instructor/` → guida riservata docente con dettagli sui singoli casi
 
-## Nuovo pacchetto casi studio (5 + 5)
+## Assegnazione consigliata (5 + 5)
 
-Per assegnare un caso a ciascuno dei 5 partecipanti e mantenere 5 alternative:
+- Assegna i casi `01..05` ai 5 partecipanti (uno per studente).
+- Mantieni `06..10` come casi di riserva/approfondimento.
 
-- Casi principali: `cases/main/case01_...md` → `case05_...md`
-- Casi riserva: `cases/reserve/case06_...md` → `case10_...md`
+I casi studenti sono progettati per:
+- spiegare software e razionale di ogni comando,
+- far prendere decisioni motivate su pulizia reads e filtri varianti,
+- permettere ispezione dei report FastQC sia da HTML sia da terminale (`unzip -p ...`).
 
-Ogni caso contiene:
-
-1. scenario del problema bioinformatico
-2. workflow completo con comandi shell
-3. strategia di pulizia/filtraggio dati
-4. controlli di qualità e confronto risultati
-5. traccia per discussione finale
-
-Indice completo: `cases/README.md`.
-
-## Suggerimento didattico
-
-Assegna un caso per studente (1–5) e usa i casi 6–10 per:
-
-- recupero in caso di imprevisti
-- approfondimento per studenti più veloci
-- discussione comparativa su trade-off di filtro (sensibilità vs specificità)
+Indice casi: `cases/README.md`.
 
 ## Licenza
 

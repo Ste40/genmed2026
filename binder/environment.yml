@@ -1,19 +1,23 @@
-ame: genmed_2026
+name: genmed_2026
 channels:
   - conda-forge
   - bioconda
   - defaults
 dependencies:
   - python=3.10
+  - jupyterlab
+  - notebook
   - fastqc
   - bwa
   - samtools
   - bcftools
   - bedtools
+  - cutadapt
+  - seqtk
+  - seqkit
+  - unzip
   - r-base=4.2
   - r-tidyverse
-  - jupyterlab
-  - notebook
   - pip
   - pip:
       - nbformat
