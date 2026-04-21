@@ -9,9 +9,7 @@ Per l'intero workflow (QC → cleaning opzionale → allineamento → variant ca
 
 ## Setup rapido per questo caso
 ```bash
-# Spostati automaticamente alla root del repository (da qualunque sottocartella)
-REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "Errore: esegui i comandi dentro la repo."; exit 1; }
-cd "$REPO_ROOT"
+# Su Binder: esegui questi comandi da terminale aperto nella root del repository
 
 CASE=case08
 FASTQ=data/dataset8/sample8.fastq

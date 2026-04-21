@@ -11,9 +11,7 @@ Usala per **qualsiasi dataset assegnato** (`dataset1` ... `dataset10`), cambiand
 Imposta il numero del caso e il FASTQ assegnato.
 
 ```bash
-# Spostati automaticamente alla root del repository (da qualunque sottocartella)
-REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "Errore: esegui i comandi dentro la repo."; exit 1; }
-cd "$REPO_ROOT"
+# Su Binder: esegui questi comandi da terminale aperto nella root del repository
 
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq
