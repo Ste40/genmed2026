@@ -4,11 +4,10 @@ Questa esercitazione introduce i concetti fondamentali della bioinformatica appl
 
 ## Obiettivi formativi
 
-1. Acquisire familiarità con shell Bash e file system.
-2. Comprendere i formati principali (FASTA, FASTQ, SAM/BAM, VCF, BED/GFF).
-3. Eseguire e interpretare un controllo qualità (QC) su reads grezze.
-4. Comprendere il flusso completo FASTQ → allineamento → varianti.
-5. Leggere criticamente output, metriche e file prodotti dagli strumenti.
+1. Comprendere i formati principali (FASTA, FASTQ, SAM/BAM, VCF, BED/GFF).
+2. Eseguire e interpretare un controllo qualità (QC) su reads grezze.
+3. Comprendere il flusso completo FASTQ → allineamento → varianti.
+4. Leggere criticamente output, metriche e file prodotti dagli strumenti.
 
 ---
 
