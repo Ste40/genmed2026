@@ -1,13 +1,13 @@
 # Hands-on session nell'ambito del progetto scuola diffusa D3 4H
 
-Questa esercitazione introduce i concetti fondamentali della bioinformatica applicata al sequenziamento NGS, con un approccio pratico in ambiente UNIX/Bash.
+Questo repository contiene il materiale didattico per un'esercitazione di bioinformatica NGS in ambiente UNIX/Bash, organizzata come percorso a casi studio per studenti e docente.
 
 ## Obiettivi formativi
 
-1. Comprendere i formati principali (FASTA, FASTQ, SAM/BAM, VCF, BED/GFF).
-2. Eseguire e interpretare un controllo qualità (QC) su reads grezze.
-3. Comprendere il flusso completo FASTQ → allineamento → varianti.
-4. Leggere criticamente output, metriche e file prodotti dagli strumenti.
+1. Comprendere i principali formati bioinformatici (FASTA, FASTQ, SAM/BAM, VCF, GFF/TSV).
+2. Eseguire un controllo qualità delle reads e interpretarne i risultati.
+3. Applicare una pipeline completa: FASTQ → allineamento → variant calling.
+4. Confrontare e discutere output/metriche tra casi con caratteristiche diverse.
 
 ---
 
@@ -19,37 +19,65 @@ Il materiale è pensato per Binder:
 2. Incollarlo su [mybinder.org](https://mybinder.org)
 3. Cliccare **Launch**
 
-> Nota: mybinder.org garantisce tipicamente almeno 1 GB RAM (fino a circa 2 GB) e chiude sessioni inattive.
+> Nota: le sessioni Binder possono terminare dopo inattività e hanno risorse limitate.
 
-- `environment.yml` — definisce l'ambiente conda con tutti i pacchetti necessari (python, fastqc, bwa, samtools, bcftools, bedtools, R e pacchetti utili).
-- `data/` — contiene un piccolo **dataset di esempio**:
-  - `reference.fa`: sequenza di riferimento (500 bp) del cromosoma 1.
-  - `sample.fastq`: 50 reads simulate con lunghezza 100 bp, contenenti varianti artificiali.
-  - `expected_variants.vcf`: file VCF con le varianti attese per la verifica dei risultati.
-- `notebooks/` — quattro notebook Jupyter che guidano attraverso le varie fasi:
-  1. **01_bash_intro.ipynb** — comandi di base della shell Bash e manipolazione di file di testo.
-  2. **02_fastqc_analysis.ipynb** — esecuzione di FastQC e interpretazione dei report.
-  3. **03_alignment.ipynb** — allineamento delle reads con BWA e uso di samtools per conversione e statistiche.
-  4. **04_variant_calling.ipynb** — chiamata delle varianti con bcftools e confronto con il file atteso.
+L'ambiente software è definito in `binder/environment.yml` e include, tra gli altri:
+
+- Python 3.10 + JupyterLab/Notebook
+- FastQC, BWA, SAMtools, BCFtools, BEDTools
+- cutadapt, seqtk, seqkit
+- R 4.2 + tidyverse
+
+---
 
 ## Struttura del repository
 
-- `binder/environment.yml` — ambiente software dell'esercitazione.
-- `data/` — dataset di esempio (reads, riferimento e file di supporto).
-- `GUIDA_TOOLS.md` — guida descrittiva dei tool usati nel workflow, con input/output, metriche e file prodotti.
+- `binder/`
+  - `environment.yml` — ambiente conda dell'esercitazione.
+  - `postBuild` — setup post-build per Binder.
+- `data/`
+  - `dataset1/` ... `dataset10/` — 10 set di reads (`sample*.fastq`) per i diversi casi.
+  - `reference/` — file comuni di riferimento:
+    - `mock_reference.fa`
+    - `mock_annotation.gff`
+    - `causative_variants.tsv`
+- `cases/`
+  - `students/main/` — 5 casi principali (case01–case05).
+  - `students/reserve/` — 5 casi di riserva/approfondimento (case06–case10).
+  - `instructor/` — guida riservata al docente.
+  - `README.md` — indice rapido delle sezioni.
+- `GUIDA_TOOLS.md` — spiegazione dei tool e del workflow.
 
+---
+
+## Come usare il materiale
+
+1. Avvia Binder.
+2. Apri l'indice casi in `cases/README.md`.
+3. Per gli studenti: inizia da `cases/students/README.md` e poi dai casi `main/`.
+4. Per il docente: usa `cases/instructor/README.md` per la mappa didattica dei case.
+5. Durante il lavoro, usa `GUIDA_TOOLS.md` come riferimento su comandi, input/output e metriche.
+
+---
+
+## Workflow didattico (alto livello)
+
+Ogni caso segue lo stesso schema generale:
+
+1. QC iniziale con FastQC.
+2. Eventuale cleaning/filtraggio reads.
+3. Allineamento al riferimento con BWA.
+4. Elaborazione BAM e metriche con SAMtools.
+5. Variant calling con BCFtools.
+6. Analisi copertura e confronto con `causative_variants.tsv`.
+
+---
 
 ## Gestione del repository
 
-Per mantenere il repository ordinato, il flusso di lavoro prevede un **unico branch principale: `main`**.
+Il repository usa `main` come branch di riferimento per il materiale didattico consolidato.
 
-- usare `main` come riferimento ufficiale del materiale didattico;
-- evitare branch permanenti aggiuntivi;
-- usare eventualmente branch temporanei solo per modifiche locali e poi riallinearli su `main`.
-
-### Pulizia dei branch (locale + remoto)
-
-Dopo il merge di una PR, eliminare i branch non più necessari:
+Dopo merge di PR, è consigliata la pulizia dei branch non più necessari:
 
 ```bash
 # elimina branch locali già mergeati (tranne main)
@@ -62,19 +90,8 @@ git push origin --delete <nome-branch>
 git fetch --prune
 ```
 
-Su GitHub conviene anche attivare **Settings → General → Pull Requests → Automatically delete head branches**.
-
-Indice casi: `cases/README.md`.
-
-## Come usare il materiale
-
-Le istruzioni operative dei comandi sono state riportate nei singoli casi/esercizi.
-Per una visione d'insieme dei software usati e del significato dei risultati, consulta:
-
-➡️ **[GUIDA_TOOLS.md](GUIDA_TOOLS.md)**
-
 ---
 
-## Note finali
+## Licenza
 
 Materiale rilasciato con licenza Creative Commons (CC BY 4.0).
