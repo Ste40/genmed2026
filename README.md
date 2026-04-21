@@ -65,7 +65,7 @@ git fetch --prune
 
 Su GitHub conviene anche attivare **Settings → General → Pull Requests → Automatically delete head branches**.
 
-## Mini esercitazioni
+Indice casi: `cases/README.md`.
 
 ## Come usare il materiale
 
