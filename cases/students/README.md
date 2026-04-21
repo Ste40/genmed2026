@@ -17,3 +17,5 @@ Questi casi sono pensati per gli studenti e **non rivelano il tipo di criticità
 - [Case 10](reserve/case10.md)
 
 Ogni caso include spiegazione didattica dei software, dei comandi e del motivo per cui eseguire ogni passaggio.
+Per iniziare rapidamente dai casi principali, vedi anche: [Guida rapida main](main/README.md).
+
