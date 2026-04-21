@@ -30,30 +30,11 @@ fastqc -o $OUT/fastqc $FASTQ
 ```
 **Perché:** prima di toccare i dati devi capire se c'è qualcosa da correggere.
 
-### 3) Ispezione dei report FastQC (anche da terminale)
-```bash
-# Elenco file prodotti
-ls -lh $OUT/fastqc
+### 3) Ispezione dei report FastQC (HTML)
+Apri il report HTML generato da FastQC (file `*_fastqc.html` in `$OUT/fastqc`) e interpreta i moduli principali
+(qualità per base, distribuzione lunghezze, contenuto GC, sequenze sovra-rappresentate).
 
-# Estrarre report testuale dal file zip
-unzip -p $OUT/fastqc/*_fastqc.zip */summary.txt
-unzip -p $OUT/fastqc/*_fastqc.zip */fastqc_data.txt | head -n 80
-```
-**Perché:** puoi ispezionare i risultati senza uscire dal terminale; in Jupyter puoi anche aprire l'HTML del report.
-
-> Nota importante per questo dataset sintetico: `sample1.fastq` è stato preparato con qualità alta quasi costante, ma con almeno un carattere qualità `<64` per rendere non ambiguo l'encoding Phred+33 in FastQC.
-> Per verifica rapida da terminale:
-> ```bash
-> python - <<'PY'
-> import os
-> from pathlib import Path
-> p=Path(os.environ["FASTQ"])
-> quals=[line.strip() for i,line in enumerate(p.open()) if i%4==3]
-> vals=[ord(c) for q in quals for c in q]
-> print(min(vals), max(vals))
-> PY
-> ```
-> Se il minimo è `<64` (qui 63) FastQC non può interpretarlo come Phred+64; quindi la scala corretta è Phred+33 e la qualità resta coerente con un caso lineare.
+**Perché:** il report HTML è il formato più completo e leggibile per la valutazione QC.
 
 ### 4) (Decisione guidata dal QC) eventuale pulizia reads
 Se FastQC indica criticità, applica **una** delle strategie sotto e salva in `$OUT/clean.fastq` (sovrascrivendo il file).

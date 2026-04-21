@@ -30,16 +30,11 @@ fastqc -o $OUT/fastqc $FASTQ
 ```
 **Perché:** prima di toccare i dati devi capire se c'è qualcosa da correggere.
 
-### 3) Ispezione dei report FastQC (anche da terminale)
-```bash
-# Elenco file prodotti
-ls -lh $OUT/fastqc
+### 3) Ispezione dei report FastQC (HTML)
+Apri il report HTML generato da FastQC (file `*_fastqc.html` in `$OUT/fastqc`) e interpreta i moduli principali
+(qualità per base, distribuzione lunghezze, contenuto GC, sequenze sovra-rappresentate).
 
-# Estrarre report testuale dal file zip
-unzip -p $OUT/fastqc/*_fastqc.zip */summary.txt
-unzip -p $OUT/fastqc/*_fastqc.zip */fastqc_data.txt | head -n 80
-```
-**Perché:** puoi ispezionare i risultati senza uscire dal terminale; in Jupyter puoi anche aprire l'HTML del report.
+**Perché:** il report HTML è il formato più completo e leggibile per la valutazione QC.
 
 ### 4) (Decisione guidata dal QC) eventuale pulizia reads
 Se FastQC indica criticità, applica **una** delle strategie sotto e salva in `$OUT/clean.fastq` (sovrascrivendo il file).
