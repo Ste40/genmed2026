@@ -1,8 +1,12 @@
 #!/bin/bash
 set -e
 
-# Rendi NON scrivibili solo i file (non le cartelle)
-find data notebooks -type f -exec chmod a-w {} +
+# Rendi NON scrivibili solo i file (non le cartelle), se le directory esistono
+for dir in data notebooks; do
+    if [ -d "$dir" ]; then
+        find "$dir" -type f -exec chmod a-w {} +
+    fi
+done
 
 # Cartelle di lavoro dove gli studenti scrivono output
 mkdir -p work results
