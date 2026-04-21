@@ -22,7 +22,7 @@ Ogni caso include già i comandi con spiegazione. Lo schema comune è:
 
 1. Setup variabili (`CASE`, `FASTQ`, `REF`, `OUT`).
 2. QC iniziale con `fastqc`.
-3. Ispezione report (`summary.txt`, `fastqc_data.txt`).
+3. Ispezione report FastQC in formato HTML (`*_fastqc.html`).
 4. Eventuale cleaning guidato dal QC (`cutadapt`, `seqtk`; senza deduplicazione per sequenza identica).
 5. Allineamento con `bwa mem` + preparazione BAM (`samtools`).
 6. Variant calling (`bcftools mpileup` + `bcftools call`).
