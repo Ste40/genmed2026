@@ -11,11 +11,15 @@ Usala per **qualsiasi dataset assegnato** (`dataset1` ... `dataset10`), cambiand
 Imposta il numero del caso e il FASTQ assegnato.
 
 ```bash
+# Esegui i comandi dalla root del repository
+cd /workspace/genmed2026
+
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq
 REF=data/reference/mock_reference.fa
 OUT=results/$CASE
-mkdir -p $OUT/fastqc
+mkdir -p "$OUT/fastqc"
+[ -r "$FASTQ" ] || { echo "Errore: FASTQ non trovato: $FASTQ"; exit 1; }
 ```
 
 > Per gli altri casi cambia solo `CASE` e `FASTQ` (es. `case07` + `data/dataset7/sample7.fastq`).
@@ -24,7 +28,7 @@ mkdir -p $OUT/fastqc
 
 ## 2) Quality control iniziale
 ```bash
-fastqc -o $OUT/fastqc $FASTQ
+fastqc -o "$OUT/fastqc" "$FASTQ"
 ```
 
 Apri il report HTML (`$OUT/fastqc/*_fastqc.html`) e interpreta almeno:
