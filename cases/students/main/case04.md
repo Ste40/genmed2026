@@ -9,9 +9,14 @@ Per l'intero workflow (QC → cleaning opzionale → allineamento → variant ca
 
 ## Setup rapido per questo caso
 ```bash
+# Spostati automaticamente alla root del repository (da qualunque sottocartella)
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "Errore: esegui i comandi dentro la repo."; exit 1; }
+cd "$REPO_ROOT"
+
 CASE=case04
 FASTQ=data/dataset4/sample4.fastq
 REF=data/reference/mock_reference.fa
 OUT=results/$CASE
-mkdir -p $OUT/fastqc
+mkdir -p "$OUT/fastqc"
+[ -r "$FASTQ" ] || { echo "Errore: FASTQ non trovato: $FASTQ"; exit 1; }
 ```
