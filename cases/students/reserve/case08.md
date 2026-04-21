@@ -94,3 +94,18 @@ Confronta le varianti finali con `data/reference/causative_variants.tsv` e giust
 1. quali step di pulizia hai applicato (o evitato),
 2. quale filtro VCF ritieni più adatto,
 3. quali evidenze supportano la variante finale.
+
+### 9) Attività extra: annotazione su gene mock e copertura
+```bash
+ANNOT=data/reference/mock_annotation.gff
+
+# 1) Estrai la/e variante/i finali che cadono in feature annotate (gene/CDS/exon)
+bedtools intersect -header -wa -a $OUT/final_lenient.vcf -b $ANNOT > $OUT/final_lenient.annotated.vcf
+
+# 2) Calcola la copertura media sulle feature annotate del gene mock
+bedtools coverage -a $ANNOT -b $OUT/aln.sorted.bam -mean > $OUT/mock_gene_coverage.tsv
+
+# 3) Visualizza rapidamente le feature con copertura più bassa
+sort -k10,10n $OUT/mock_gene_coverage.tsv | head
+```
+**Perché:** questa verifica aggiunge contesto biologico (dove cade la variante) e permette di valutare se la regione genica mock ha copertura sufficiente per fidarsi dell'interpretazione finale.
