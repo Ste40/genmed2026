@@ -16,6 +16,7 @@ Questi casi sono pensati per gli studenti e **non rivelano il tipo di criticità
 - [Case 09](reserve/case09.md)
 - [Case 10](reserve/case10.md)
 
-Ogni caso include spiegazione didattica dei software, dei comandi e del motivo per cui eseguire ogni passaggio.
+I singoli case indicano solo dataset e setup rapido.
+Per la procedura completa valida per tutti i casi, usa: [Guida unica studenti](guida_unica.md).
 Per iniziare rapidamente dai casi principali, vedi anche: [Guida rapida main](main/README.md).
 
