@@ -9,9 +9,13 @@ Per l'intero workflow (QC → cleaning opzionale → allineamento → variant ca
 
 ## Setup rapido per questo caso
 ```bash
+# Esegui i comandi dalla root del repository
+cd /workspace/genmed2026
+
 CASE=case07
 FASTQ=data/dataset7/sample7.fastq
 REF=data/reference/mock_reference.fa
 OUT=results/$CASE
-mkdir -p $OUT/fastqc
+mkdir -p "$OUT/fastqc"
+[ -r "$FASTQ" ] || { echo "Errore: FASTQ non trovato: $FASTQ"; exit 1; }
 ```
