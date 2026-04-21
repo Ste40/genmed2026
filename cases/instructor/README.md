@@ -5,6 +5,7 @@
 ## Mappa dei casi
 
 - **Case 01 (dataset1):** controllo positivo lineare, pipeline standard.
+  - Nota QC: il file è sintetico con qualità costante (`I`). FastQC può auto-detectare "Illumina 1.5" e mostrare per-base quality apparentemente bassa (~9) pur senza decadimento reale lungo la read.
 - **Case 02 (dataset2):** qualità meno uniforme, utile discutere filtri QUAL/DP.
 - **Case 03 (dataset3):** reads con lunghezza variabile/corte, utile discutere filtri su lunghezza.
 - **Case 04 (dataset4):** copertura ridotta, utile discutere rischio di falsi negativi.

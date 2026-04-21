@@ -41,6 +41,15 @@ unzip -p $OUT/fastqc/*_fastqc.zip */fastqc_data.txt | head -n 80
 ```
 **Perché:** puoi ispezionare i risultati senza uscire dal terminale; in Jupyter puoi anche aprire l'HTML del report.
 
+> Nota importante per questo dataset sintetico: `sample1.fastq` usa qualità costante con solo il carattere ASCII `I`.
+> In alcuni run FastQC può etichettare l'encoding come "Illumina 1.5", mostrando un valore apparente ~9 per base.
+> Non è un degrado reale della qualità lungo la read: è un effetto di ambiguità dell'auto-detection su un file monocromatico.
+> Per verifica rapida da terminale:
+> ```bash
+> awk 'NR%4==0{print; exit}' $FASTQ | od -An -tu1
+> ```
+> Se osservi `73` (ASCII `I`) e il dataset è stato generato in Phred+33, quel valore corrisponde a Q=40.
+
 ### 4) (Decisione guidata dal QC) eventuale pulizia reads
 Se FastQC indica criticità, applica una delle strategie sotto e salva in `$OUT/clean.fastq`:
 
