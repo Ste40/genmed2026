@@ -10,7 +10,7 @@ Eseguire un'analisi end-to-end da FASTQ a VCF, motivando ogni scelta di QC, filt
 - **BWA-MEM**: allinea le reads al genoma di riferimento.
 - **samtools**: converte/ordina/indicizza BAM e calcola metriche di allineamento.
 - **bcftools**: esegue mpileup, chiama varianti e filtra VCF.
-- **Tool opzionali di cleaning** (`cutadapt`, `seqtk`, `seqkit`, mini-script Python): usali solo se il QC suggerisce un problema.
+- **Tool opzionali di cleaning** (`cutadapt`, `seqtk`, mini-script Python): usali solo se il QC suggerisce un problema.
 
 ## Workflow consigliato (con motivazione)
 
@@ -41,27 +41,39 @@ unzip -p $OUT/fastqc/*_fastqc.zip */fastqc_data.txt | head -n 80
 ```
 **Perché:** puoi ispezionare i risultati senza uscire dal terminale; in Jupyter puoi anche aprire l'HTML del report.
 
+> Nota importante per questo dataset sintetico: `sample1.fastq` è stato preparato con qualità alta quasi costante, ma con almeno un carattere qualità `<64` per rendere non ambiguo l'encoding Phred+33 in FastQC.
+> Per verifica rapida da terminale:
+> ```bash
+> python - <<'PY'
+> import os
+> from pathlib import Path
+> p=Path(os.environ["FASTQ"])
+> quals=[line.strip() for i,line in enumerate(p.open()) if i%4==3]
+> vals=[ord(c) for q in quals for c in q]
+> print(min(vals), max(vals))
+> PY
+> ```
+> Se il minimo è `<64` (qui 63) FastQC non può interpretarlo come Phred+64; quindi la scala corretta è Phred+33 e la qualità resta coerente con un caso lineare.
+
 ### 4) (Decisione guidata dal QC) eventuale pulizia reads
-Se FastQC indica criticità, applica una delle strategie sotto e salva in `$OUT/clean.fastq`:
+Se FastQC indica criticità, applica **una** delle strategie sotto e salva in `$OUT/clean.fastq` (sovrascrivendo il file).
+Se **non** ci sono criticità, crea comunque il file pulito come copia 1:1 dell'input per mantenere il workflow coerente:
 
 ```bash
+cp $FASTQ $OUT/clean.fastq
+
 # A) trimming qualità + lunghezza minima
 cutadapt -q 20 -m 70 -o $OUT/clean.fastq $FASTQ > $OUT/cutadapt.log
 
 # B) filtro per lunghezza minima
 seqtk seq -L 70 $FASTQ > $OUT/clean.fastq
-
-# C) deduplicazione sequenze identiche
-seqkit rmdup -s $FASTQ -o $OUT/clean.fastq
 ```
-**Perché:** la pulizia migliora specificità/sensibilità solo se scelta in base all'evidenza QC.
-
-> Se non fai cleaning, usa direttamente `FASTQ` nel passo successivo.
+**Perché:** la pulizia migliora specificità/sensibilità solo se scelta in base all'evidenza QC; rimuovere sequenze identiche non è raccomandato in questo contesto didattico perché può eliminare reads biologicamente legittime.
 
 ### 5) Allineamento e preparazione BAM
 ```bash
 INPUT_FOR_ALIGNMENT=${OUT}/clean.fastq
-[ -s "$INPUT_FOR_ALIGNMENT" ] || INPUT_FOR_ALIGNMENT=$FASTQ
+[ -s "$INPUT_FOR_ALIGNMENT" ] || { echo "Errore: manca $INPUT_FOR_ALIGNMENT. Esegui prima lo step 4."; exit 1; }
 
 bwa index $REF
 bwa mem $REF $INPUT_FOR_ALIGNMENT | samtools sort -o $OUT/aln.sorted.bam

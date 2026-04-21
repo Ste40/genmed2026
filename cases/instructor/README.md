@@ -5,6 +5,7 @@
 ## Mappa dei casi
 
 - **Case 01 (dataset1):** controllo positivo lineare, pipeline standard.
+  - Nota QC: il dataset include almeno un carattere qualità `<64` per fissare l'encoding in Phred+33 ed evitare ambiguità di auto-detection in FastQC.
 - **Case 02 (dataset2):** qualità meno uniforme, utile discutere filtri QUAL/DP.
 - **Case 03 (dataset3):** reads con lunghezza variabile/corte, utile discutere filtri su lunghezza.
 - **Case 04 (dataset4):** copertura ridotta, utile discutere rischio di falsi negativi.
