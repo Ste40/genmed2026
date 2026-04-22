@@ -258,10 +258,16 @@ Per validare meglio una variante candidata, durante l'esercitazione possiamo apr
 
 ```python
 import igv_notebook
+igv_notebook.init()
 
 b = igv_notebook.Browser(
     {
-        "genome": "hg19",  # sostituire con il riferimento usato nel caso
+        "reference": {
+            "id": "mock_ref",
+            "name": "Mock reference",
+            "fastaURL": "data/reference/mock_reference.fa",
+            "indexURL": "data/reference/mock_reference.fa.fai"
+        },
         "locus": "chr1:1-2000"
     }
 )
@@ -272,7 +278,7 @@ b
 
 ### Nota pratica per i nostri casi
 
-Nei casi di questo repository il riferimento è mock (`data/reference/mock_reference.fa`): conviene impostare il browser con il riferimento coerente al dataset del caso e poi centrare il locus sulle posizioni d'interesse (es. dalla tabella `causative_variants.tsv`).
+Nei casi di questo repository il riferimento è mock (`data/reference/mock_reference.fa`): prima crea anche l'indice FASTA con `samtools faidx data/reference/mock_reference.fa`, poi imposta il browser con riferimento coerente al dataset e centra il locus sulle posizioni d'interesse (es. dalla tabella `causative_variants.tsv`).
 
 ---
 

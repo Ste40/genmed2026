@@ -67,6 +67,7 @@ INPUT_FOR_ALIGNMENT=${OUT}/clean.fastq
 [ -s "$INPUT_FOR_ALIGNMENT" ] || { echo "Errore: manca $INPUT_FOR_ALIGNMENT. Esegui prima lo step 3."; exit 1; }
 
 bwa index $REF
+samtools faidx $REF
 bwa mem $REF $INPUT_FOR_ALIGNMENT | samtools sort -o $OUT/aln.sorted.bam
 samtools index $OUT/aln.sorted.bam
 samtools flagstat $OUT/aln.sorted.bam > $OUT/flagstat.txt
@@ -146,9 +147,14 @@ Per **Desktop locale** (fuori da Binder/Jupyter), avvia IGV dalla GUI oppure con
 
 ### 9.1 Preparazione file
 Assicurati di avere:
-- riferimento: `data/reference/mock_reference.fa`
+- riferimento: `data/reference/mock_reference.fa` + indice `data/reference/mock_reference.fa.fai`
 - BAM ordinato + indice: `results/<case>/aln.sorted.bam` e `results/<case>/aln.sorted.bam.bai`
 - VCF filtrato (consigliato): `results/<case>/final_lenient.vcf` oppure `results/<case>/final_strict.vcf`
+
+Se manca l'indice FASTA, crealo una volta:
+```bash
+samtools faidx data/reference/mock_reference.fa
+```
 
 Se vuoi, puoi comprimere e indicizzare il VCF per una navigazione più rapida:
 ```bash
@@ -180,6 +186,58 @@ Per ogni variante finale candidata, aggiungi una breve nota:
 - eventuali elementi che aumentano/riducono la fiducia (copertura bassa, mismatch multipli, ecc.).
 
 **Perché:** il controllo visivo in IGV aiuta a distinguere varianti plausibili da possibili artefatti tecnici non evidenti con i soli filtri automatici.
+
+### 9.5 Esempio pratico `igv_notebook` adattato a questo corso
+Se lavori in Jupyter/Binder, puoi inizializzare IGV direttamente in notebook caricando riferimento + BAM + VCF + annotazioni in un'unica configurazione.
+
+```python
+import igv_notebook
+igv_notebook.init()
+
+CASE = "case01"  # cambia con il tuo case (es. case07)
+
+b = igv_notebook.Browser({
+    "reference": {
+        "id": "mock_ref",
+        "name": "Mock reference",
+        "fastaURL": "data/reference/mock_reference.fa",
+        "indexURL": "data/reference/mock_reference.fa.fai"
+    },
+    "locus": "chr1:1-1000",  # opzionale: puoi cambiare con CHROM:POS del tuo VCF
+    "tracks": [
+        {
+            "name": f"{CASE} BAM",
+            "url": f"results/{CASE}/aln.sorted.bam",
+            "indexURL": f"results/{CASE}/aln.sorted.bam.bai",
+            "format": "bam",
+            "type": "alignment"
+        },
+        {
+            "name": f"{CASE} VCF lenient",
+            "url": f"results/{CASE}/final_lenient.vcf.gz",
+            "indexURL": f"results/{CASE}/final_lenient.vcf.gz.tbi",
+            "format": "vcf",
+            "type": "variant",
+            "displayMode": "EXPANDED"
+        },
+        {
+            "name": "Mock annotation",
+            "url": "data/reference/mock_annotation.gff",
+            "format": "gff",
+            "type": "annotation",
+            "displayMode": "EXPANDED",
+            "height": 120
+        }
+    ]
+})
+
+b
+```
+
+Note operative importanti:
+- Se usi `final_lenient.vcf.gz`, crea prima indice tabix con `tabix -p vcf` (vedi step 9.1).
+- Nel blocco `Browser({...})` sopra il riferimento custom usa `indexURL`: quindi serve il `.fai` (`samtools faidx data/reference/mock_reference.fa`).
+- Se non hai compresso il VCF, puoi usare anche `results/<case>/final_lenient.vcf` senza `indexURL` (meno fluido su file grandi).
 
 ---
 
