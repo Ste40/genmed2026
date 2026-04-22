@@ -109,6 +109,46 @@ sort -k10,10n $OUT/mock_gene_coverage.tsv | head
 
 **Perché:** aggiunge contesto biologico (posizione su feature annotate) e verifica se la copertura del gene mock è sufficiente per fidarsi del risultato.
 
+## 9) Visualizzazione manuale in IGV (consigliato)
+Per validare visivamente la variante candidata, apri i file in **IGV (Integrative Genomics Viewer)**.
+
+### 9.1 Preparazione file
+Assicurati di avere:
+- riferimento: `data/reference/mock_reference.fa`
+- BAM ordinato + indice: `results/<case>/aln.sorted.bam` e `results/<case>/aln.sorted.bam.bai`
+- VCF filtrato (consigliato): `results/<case>/final_lenient.vcf` oppure `results/<case>/final_strict.vcf`
+
+Se vuoi, puoi comprimere e indicizzare il VCF per una navigazione più rapida:
+```bash
+bgzip -c $OUT/final_lenient.vcf > $OUT/final_lenient.vcf.gz
+tabix -p vcf $OUT/final_lenient.vcf.gz
+```
+
+### 9.2 Caricamento in IGV
+1. Apri IGV.
+2. Seleziona il genoma di riferimento locale:
+   - **Genomes → Load Genome from File...**
+   - scegli `data/reference/mock_reference.fa`.
+3. Carica i track:
+   - **File → Load from File...**
+   - seleziona `aln.sorted.bam` (IGV userà automaticamente il `.bai`)
+   - seleziona il VCF (`.vcf` o `.vcf.gz`).
+
+### 9.3 Cosa controllare al locus variante
+Vai alla posizione della variante (colonna `CHROM:POS` nel VCF), poi verifica:
+- copertura sufficiente (pileup non troppo scarso),
+- presenza coerente dell'allele alternativo in più reads,
+- qualità di mapping/read plausibile (assenza di pattern fortemente sospetti),
+- assenza di bias evidente (solo estremità read o solo un orientamento).
+
+### 9.4 Cosa riportare nel tuo elaborato
+Per ogni variante finale candidata, aggiungi una breve nota:
+- posizione (`CHROM:POS`),
+- quota approssimativa di reads con allele alternativo osservata in IGV,
+- eventuali elementi che aumentano/riducono la fiducia (copertura bassa, mismatch multipli, ecc.).
+
+**Perché:** il controllo visivo in IGV aiuta a distinguere varianti plausibili da possibili artefatti tecnici non evidenti con i soli filtri automatici.
+
 ---
 
 ## Output minimi attesi (per ogni caso)
