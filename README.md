@@ -27,6 +27,9 @@ L'ambiente software è definito in `binder/environment.yml` e include, tra gli a
 - FastQC, BWA, SAMtools, BCFtools, BEDTools
 - cutadapt, seqtk, seqkit
 - R 4.2 + tidyverse
+- IGV in notebook (`igv-notebook`) per visualizzare BAM/VCF direttamente in Jupyter
+
+> Nota su IGV: in Binder non è pratico avviare l'app desktop di IGV (GUI). Durante le esercitazioni usiamo invece la versione integrata nel notebook, che si apre nel browser.
 
 ---
 
