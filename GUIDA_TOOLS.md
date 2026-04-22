@@ -256,23 +256,16 @@ Per validare meglio una variante candidata, durante l'esercitazione possiamo apr
 
 ### Esempio minimo (in una cella Python)
 
-```python
-import igv_notebook
+Per i casi del corso usa la procedura operativa completa in `cases/students/guida_unica.md` (sezione 9.5), dove trovi i comandi esatti con solo `CASE_NUM` da cambiare.
 
-b = igv_notebook.Browser(
-    {
-        "genome": "hg19",  # sostituire con il riferimento usato nel caso
-        "locus": "chr1:1-2000"
-    }
-)
-b.load_track({"name": "BAM", "url": "work/sample.sorted.bam", "indexURL": "work/sample.sorted.bam.bai", "format": "bam"})
-b.load_track({"name": "VCF", "url": "work/sample.vcf", "format": "vcf"})
-b
-```
+Qui lasciamo solo la regola generale:
+- inizializza `igv_notebook` in cella Jupyter,
+- usa un `reference` con `fastaURL` + `indexURL` per riferimenti custom,
+- carica BAM/BAI e VCF (meglio `.vcf.gz` + `.tbi`) come track.
 
 ### Nota pratica per i nostri casi
 
-Nei casi di questo repository il riferimento è mock (`data/reference/mock_reference.fa`): conviene impostare il browser con il riferimento coerente al dataset del caso e poi centrare il locus sulle posizioni d'interesse (es. dalla tabella `causative_variants.tsv`).
+Nei casi di questo repository il riferimento è mock (`data/reference/mock_reference.fa`) e richiede indice FASTA `.fai` per uso stabile in IGV notebook.
 
 ---
 
