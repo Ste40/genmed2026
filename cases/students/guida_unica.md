@@ -12,6 +12,7 @@ Imposta il numero del caso e il FASTQ assegnato.
 
 ```bash
 # Esegui i comandi dalla root del repository
+cd $HOME
 
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq
@@ -194,35 +195,34 @@ Se lavori in Jupyter/Binder, puoi inizializzare IGV direttamente in notebook car
 import igv_notebook
 igv_notebook.init()
 
-CASE = "case01"  # cambia con il tuo case (es. case07)
+CASE = "case01"
 
 b = igv_notebook.Browser({
     "reference": {
         "id": "mock_ref",
         "name": "Mock reference",
-        "fastaURL": "data/reference/mock_reference.fa",
-        "indexURL": "data/reference/mock_reference.fa.fai"
+        "fastaURL": "../../data/reference/mock_reference.fa",
+        "indexURL": "../../data/reference/mock_reference.fa.fai"
     },
-    "locus": "chr1:1-1000",  # opzionale: puoi cambiare con CHROM:POS del tuo VCF
+    "locus": "mock_chromosome:50-150",
     "tracks": [
         {
             "name": f"{CASE} BAM",
-            "url": f"results/{CASE}/aln.sorted.bam",
-            "indexURL": f"results/{CASE}/aln.sorted.bam.bai",
+            "url": f"../../results/{CASE}/aln.sorted.bam",
+            "indexURL": f"../../results/{CASE}/aln.sorted.bam.bai",
             "format": "bam",
             "type": "alignment"
         },
         {
-            "name": f"{CASE} VCF lenient",
-            "url": f"results/{CASE}/final_lenient.vcf.gz",
-            "indexURL": f"results/{CASE}/final_lenient.vcf.gz.tbi",
+            "name": f"{CASE} raw VCF",
+            "url": f"../../results/{CASE}/raw.vcf",
             "format": "vcf",
             "type": "variant",
             "displayMode": "EXPANDED"
         },
         {
             "name": "Mock annotation",
-            "url": "data/reference/mock_annotation.gff",
+            "url": "../../data/reference/mock_annotation.gff",
             "format": "gff",
             "type": "annotation",
             "displayMode": "EXPANDED",

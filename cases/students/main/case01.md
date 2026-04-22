@@ -11,6 +11,7 @@ Per l'intero workflow (QC -> cleaning opzionale -> allineamento -> variant calli
 
 ```bash
 # Esegui i comandi dalla root del repository
+cd $HOME
 
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq

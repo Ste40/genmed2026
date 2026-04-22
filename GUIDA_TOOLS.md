@@ -265,10 +265,10 @@ b = igv_notebook.Browser(
         "reference": {
             "id": "mock_ref",
             "name": "Mock reference",
-            "fastaURL": "data/reference/mock_reference.fa",
-            "indexURL": "data/reference/mock_reference.fa.fai"
+            "fastaURL": "../../data/reference/mock_reference.fa",
+            "indexURL": "../../data/reference/mock_reference.fa.fai"
         },
-        "locus": "chr1:1-2000"
+        "locus": "mock_chromosome:50-150"
     }
 )
 b.load_track({"name": "BAM", "url": "work/sample.sorted.bam", "indexURL": "work/sample.sorted.bam.bai", "format": "bam"})
