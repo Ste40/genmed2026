@@ -128,7 +128,7 @@ Usa questo schema pratico:
    pip install igv-notebook
    ```
 2. **Riavvia il kernel del notebook** (se hai appena installato).
-3. **In una cella Jupyter** esegui:
+3. **In una cella Jupyter (non nel terminale `python`)** esegui:
    ```python
    import igv_notebook
    igv_notebook.init()
@@ -136,6 +136,11 @@ Usa questo schema pratico:
 4. **Nella cella successiva** crea e visualizza il browser IGV (vedi esempio completo in `GUIDA_TOOLS.md`).
 
 Se vedi errori tipo `NameError: name 'igv' is not defined`, significa che stai digitando `igv` nel prompt Python: non è il comando corretto in quel contesto.
+
+Se vedi `AttributeError: 'NoneType' object has no attribute 'kernel'` durante `igv_notebook.init()`, significa che hai lanciato il codice **fuori da un kernel Jupyter attivo** (ad esempio nel REPL `python` da terminale). In quel caso:
+- esci dal REPL (`exit()`),
+- apri un notebook in JupyterLab,
+- riesegui `import igv_notebook` + `igv_notebook.init()` dentro una cella.
 
 Per **Desktop locale** (fuori da Binder/Jupyter), avvia IGV dalla GUI oppure con lo script dell'installazione (`igv.sh` su Linux/macOS, `igv.bat` su Windows).
 
