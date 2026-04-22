@@ -1,6 +1,6 @@
 # Hands-on session nell'ambito del progetto scuola diffusa D3 4H
 
-Questo repository contiene il materiale didattico per un'esercitazione di bioinformatica NGS in ambiente UNIX/Bash, organizzata come percorso a casi studio per studenti e docente.
+Questo repository contiene il materiale didattico per un'esercitazione di bioinformatica NGS in ambiente UNIX/Bash nell'ambito della scuola diffusa organizzata dalla fondazione D34H.
 
 ## Obiettivi formativi
 
@@ -29,28 +29,6 @@ L'ambiente software è definito in `binder/environment.yml` e include, tra gli a
 - R 4.2 + tidyverse
 - IGV in notebook (`igv-notebook`) per visualizzare BAM/VCF direttamente in Jupyter
 
-> Nota su IGV: in Binder non è pratico avviare l'app desktop di IGV (GUI). Durante le esercitazioni usiamo invece la versione integrata nel notebook, che si apre nel browser.
-
----
-
-## Struttura del repository
-
-- `binder/`
-  - `environment.yml` — ambiente conda dell'esercitazione.
-  - `postBuild` — setup post-build per Binder.
-- `data/`
-  - `dataset1/` ... `dataset10/` — 10 set di reads (`sample*.fastq`) per i diversi casi.
-  - `reference/` — file comuni di riferimento:
-    - `mock_reference.fa`
-    - `mock_annotation.gff`
-    - `causative_variants.tsv`
-- `cases/`
-  - `students/main/` — 5 casi principali (case01–case05).
-  - `students/reserve/` — 5 casi di riserva/approfondimento (case06–case10).
-  - `instructor/` — guida riservata al docente.
-  - `README.md` — indice rapido delle sezioni.
-- `GUIDA_TOOLS.md` — spiegazione dei tool e del workflow.
-
 ---
 
 ## Come usare il materiale
@@ -75,23 +53,6 @@ Ogni caso segue lo stesso schema generale:
 6. Analisi copertura e confronto con `causative_variants.tsv`.
 
 ---
-
-## Gestione del repository
-
-Il repository usa `main` come branch di riferimento per il materiale didattico consolidato.
-
-Dopo merge di PR, è consigliata la pulizia dei branch non più necessari:
-
-```bash
-# elimina branch locali già mergeati (tranne main)
-git branch --merged main | grep -v '^*' | grep -v ' main$' | xargs -r git branch -d
-
-# elimina un branch remoto specifico
-git push origin --delete <nome-branch>
-
-# aggiorna i riferimenti remoti locali
-git fetch --prune
-```
 
 ---
 
