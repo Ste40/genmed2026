@@ -244,6 +244,38 @@ Quando serve presentare i risultati in modo pulito, uso R/tidyverse per creare t
 
 ---
 
+## 9) IGV in notebook: ispezione visuale di BAM/VCF
+
+Per validare meglio una variante candidata, durante l'esercitazione possiamo aprire l'allineamento in **IGV** direttamente nel notebook con `igv-notebook` (quindi nel browser, senza GUI desktop).
+
+### Quando usarlo
+
+- controllo visuale di una posizione variante (supporto read-level)
+- verifica di copertura locale e possibili bias
+- confronto rapido tra BAM allineato e VCF chiamato
+
+### Esempio minimo (in una cella Python)
+
+```python
+import igv_notebook
+
+b = igv_notebook.Browser(
+    {
+        "genome": "hg19",  # sostituire con il riferimento usato nel caso
+        "locus": "chr1:1-2000"
+    }
+)
+b.load_track({"name": "BAM", "url": "work/sample.sorted.bam", "indexURL": "work/sample.sorted.bam.bai", "format": "bam"})
+b.load_track({"name": "VCF", "url": "work/sample.vcf", "format": "vcf"})
+b
+```
+
+### Nota pratica per i nostri casi
+
+Nei casi di questo repository il riferimento è mock (`data/reference/mock_reference.fa`): conviene impostare il browser con il riferimento coerente al dataset del caso e poi centrare il locus sulle posizioni d'interesse (es. dalla tabella `causative_variants.tsv`).
+
+---
+
 ## Formati file che bisogna saper riconoscere
 
 - **FASTA (`.fa`)**: riferimento
