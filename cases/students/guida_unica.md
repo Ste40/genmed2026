@@ -134,12 +134,9 @@ Usa questo schema pratico:
    import igv_notebook
    igv_notebook.init()
    ```
-   > Se dopo quel blocco vedi il banner `Python 3.x ...` e il prompt `>>>`, sei nel REPL del terminale (non in una cella notebook): fai `exit()` e sposta il codice in Jupyter.
 4. **Nella cella successiva** crea e visualizza il browser IGV (vedi esempio completo in `GUIDA_TOOLS.md`).
 
 Se vedi errori tipo `NameError: name 'igv' is not defined`, significa che stai digitando `igv` nel prompt Python: non è il comando corretto in quel contesto.
-
-Se vedi `import-im6.q16: unable to open X server` dopo aver scritto `import igv_notebook`, stai eseguendo `import ...` nel **terminale bash** (dove `import` è un comando di ImageMagick), non in Python/Jupyter. Apri una cella notebook oppure usa `python -c "import igv_notebook"`.
 
 Se vedi `AttributeError: 'NoneType' object has no attribute 'kernel'` durante `igv_notebook.init()`, significa che hai lanciato il codice **fuori da un kernel Jupyter attivo** (ad esempio nel REPL `python` da terminale). In quel caso:
 - esci dal REPL (`exit()`),
@@ -190,27 +187,14 @@ Per ogni variante finale candidata, aggiungi una breve nota:
 
 **Perché:** il controllo visivo in IGV aiuta a distinguere varianti plausibili da possibili artefatti tecnici non evidenti con i soli filtri automatici.
 
-### 9.5 Comando esatto `igv_notebook` per i casi (cambia solo il numero)
-Usa questi comandi **così come sono**. Devi cambiare solo `CASE_NUM`.
+### 9.5 Esempio pratico `igv_notebook` adattato a questo corso
+Se lavori in Jupyter/Binder, puoi inizializzare IGV direttamente in notebook caricando riferimento + BAM + VCF + annotazioni in un'unica configurazione.
 
-1. **In terminale** prepara indici e variabile caso:
-```bash
-CASE_NUM=1
-CASE=$(printf "case%02d" "$CASE_NUM")
-
-samtools faidx data/reference/mock_reference.fa
-samtools index "results/${CASE}/aln.sorted.bam"
-bgzip -c "results/${CASE}/final_lenient.vcf" > "results/${CASE}/final_lenient.vcf.gz"
-tabix -p vcf "results/${CASE}/final_lenient.vcf.gz"
-```
-
-2. **In una cella Jupyter** apri IGV con riferimento + BAM + VCF + annotazione:
 ```python
 import igv_notebook
 igv_notebook.init()
 
-CASE_NUM = 1
-CASE = f"case{CASE_NUM:02d}"
+CASE = "case01"  # cambia con il tuo case (es. case07)
 
 b = igv_notebook.Browser({
     "reference": {
@@ -219,6 +203,7 @@ b = igv_notebook.Browser({
         "fastaURL": "data/reference/mock_reference.fa",
         "indexURL": "data/reference/mock_reference.fa.fai"
     },
+    "locus": "chr1:1-1000",  # opzionale: puoi cambiare con CHROM:POS del tuo VCF
     "tracks": [
         {
             "name": f"{CASE} BAM",
@@ -249,14 +234,10 @@ b = igv_notebook.Browser({
 b
 ```
 
-Esempi rapidi:
-- `CASE_NUM=1` apre `results/case01/...`
-- `CASE_NUM=7` apre `results/case07/...`
-- `CASE_NUM=10` apre `results/case10/...`
-
 Note operative importanti:
-- Se `final_lenient.vcf.gz` esiste già, puoi saltare `bgzip` e rifare solo `tabix -p vcf`.
-- Se preferisci `final_strict.vcf`, sostituisci solo il nome file nel blocco VCF.
+- Se usi `final_lenient.vcf.gz`, crea prima indice tabix con `tabix -p vcf` (vedi step 9.1).
+- Nel blocco `Browser({...})` sopra il riferimento custom usa `indexURL`: quindi serve il `.fai` (`samtools faidx data/reference/mock_reference.fa`).
+- Se non hai compresso il VCF, puoi usare anche `results/<case>/final_lenient.vcf` senza `indexURL` (meno fluido su file grandi).
 
 ---
 
