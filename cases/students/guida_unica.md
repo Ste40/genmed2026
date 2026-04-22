@@ -67,6 +67,7 @@ INPUT_FOR_ALIGNMENT=${OUT}/clean.fastq
 [ -s "$INPUT_FOR_ALIGNMENT" ] || { echo "Errore: manca $INPUT_FOR_ALIGNMENT. Esegui prima lo step 3."; exit 1; }
 
 bwa index $REF
+samtools faidx $REF
 bwa mem $REF $INPUT_FOR_ALIGNMENT | samtools sort -o $OUT/aln.sorted.bam
 samtools index $OUT/aln.sorted.bam
 samtools flagstat $OUT/aln.sorted.bam > $OUT/flagstat.txt
@@ -115,11 +116,48 @@ sort -k10,10n $OUT/mock_gene_coverage.tsv | head
 ## 9) Visualizzazione manuale in IGV (consigliato)
 Per validare visivamente la variante candidata, apri i file in **IGV (Integrative Genomics Viewer)**.
 
+### 9.0 Come aprire IGV (nota importante su questo ambiente)
+Nel nostro ambiente didattico Jupyter/Binder **non è previsto un comando shell `igv`**.
+Inoltre `igv-notebook` è una libreria Python: non la usi scrivendo `igv` dentro il prompt `>>>`.
+
+Usa questo schema pratico:
+
+1. **Da terminale (non dentro `>>>`) verifica/installa il pacchetto:**
+   ```bash
+   python -c "import igv_notebook; print('igv_notebook OK')"
+   # se fallisce:
+   pip install igv-notebook
+   ```
+2. **Riavvia il kernel del notebook** (se hai appena installato).
+3. **In una cella Jupyter (non nel terminale `python`)** esegui:
+   ```python
+   import igv_notebook
+   igv_notebook.init()
+   ```
+   > Se dopo quel blocco vedi il banner `Python 3.x ...` e il prompt `>>>`, sei nel REPL del terminale (non in una cella notebook): fai `exit()` e sposta il codice in Jupyter.
+4. **Nella cella successiva** crea e visualizza il browser IGV (vedi esempio completo in `GUIDA_TOOLS.md`).
+
+Se vedi errori tipo `NameError: name 'igv' is not defined`, significa che stai digitando `igv` nel prompt Python: non è il comando corretto in quel contesto.
+
+Se vedi `import-im6.q16: unable to open X server` dopo aver scritto `import igv_notebook`, stai eseguendo `import ...` nel **terminale bash** (dove `import` è un comando di ImageMagick), non in Python/Jupyter. Apri una cella notebook oppure usa `python -c "import igv_notebook"`.
+
+Se vedi `AttributeError: 'NoneType' object has no attribute 'kernel'` durante `igv_notebook.init()`, significa che hai lanciato il codice **fuori da un kernel Jupyter attivo** (ad esempio nel REPL `python` da terminale). In quel caso:
+- esci dal REPL (`exit()`),
+- apri un notebook in JupyterLab,
+- riesegui `import igv_notebook` + `igv_notebook.init()` dentro una cella.
+
+Per **Desktop locale** (fuori da Binder/Jupyter), avvia IGV dalla GUI oppure con lo script dell'installazione (`igv.sh` su Linux/macOS, `igv.bat` su Windows).
+
 ### 9.1 Preparazione file
 Assicurati di avere:
-- riferimento: `data/reference/mock_reference.fa`
+- riferimento: `data/reference/mock_reference.fa` + indice `data/reference/mock_reference.fa.fai`
 - BAM ordinato + indice: `results/<case>/aln.sorted.bam` e `results/<case>/aln.sorted.bam.bai`
 - VCF filtrato (consigliato): `results/<case>/final_lenient.vcf` oppure `results/<case>/final_strict.vcf`
+
+Se manca l'indice FASTA, crealo una volta:
+```bash
+samtools faidx data/reference/mock_reference.fa
+```
 
 Se vuoi, puoi comprimere e indicizzare il VCF per una navigazione più rapida:
 ```bash
@@ -151,6 +189,58 @@ Per ogni variante finale candidata, aggiungi una breve nota:
 - eventuali elementi che aumentano/riducono la fiducia (copertura bassa, mismatch multipli, ecc.).
 
 **Perché:** il controllo visivo in IGV aiuta a distinguere varianti plausibili da possibili artefatti tecnici non evidenti con i soli filtri automatici.
+
+### 9.5 Esempio pratico `igv_notebook` adattato a questo corso
+Se lavori in Jupyter/Binder, puoi inizializzare IGV direttamente in notebook caricando riferimento + BAM + VCF + annotazioni in un'unica configurazione.
+
+```python
+import igv_notebook
+igv_notebook.init()
+
+CASE = "case01"  # cambia con il tuo case (es. case07)
+
+b = igv_notebook.Browser({
+    "reference": {
+        "id": "mock_ref",
+        "name": "Mock reference",
+        "fastaURL": "data/reference/mock_reference.fa",
+        "indexURL": "data/reference/mock_reference.fa.fai"
+    },
+    "locus": "chr1:1-1000",  # opzionale: puoi cambiare con CHROM:POS del tuo VCF
+    "tracks": [
+        {
+            "name": f"{CASE} BAM",
+            "url": f"results/{CASE}/aln.sorted.bam",
+            "indexURL": f"results/{CASE}/aln.sorted.bam.bai",
+            "format": "bam",
+            "type": "alignment"
+        },
+        {
+            "name": f"{CASE} VCF lenient",
+            "url": f"results/{CASE}/final_lenient.vcf.gz",
+            "indexURL": f"results/{CASE}/final_lenient.vcf.gz.tbi",
+            "format": "vcf",
+            "type": "variant",
+            "displayMode": "EXPANDED"
+        },
+        {
+            "name": "Mock annotation",
+            "url": "data/reference/mock_annotation.gff",
+            "format": "gff",
+            "type": "annotation",
+            "displayMode": "EXPANDED",
+            "height": 120
+        }
+    ]
+})
+
+b
+```
+
+Note operative importanti:
+- Se usi `final_lenient.vcf.gz`, crea prima indice tabix con `tabix -p vcf` (vedi step 9.1).
+- Nel blocco `Browser({...})` sopra il riferimento custom usa `indexURL`: quindi serve il `.fai` (`samtools faidx data/reference/mock_reference.fa`).
+- Se non hai compresso il VCF, puoi usare anche `results/<case>/final_lenient.vcf` senza `indexURL` (meno fluido su file grandi).
 
 ---
 
