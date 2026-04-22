@@ -20,3 +20,6 @@ OUT=results/$CASE
 mkdir -p "$OUT/fastqc"
 [ -r "$FASTQ" ] || { echo "Errore: FASTQ non trovato: $FASTQ"; exit 1; }
 ```
+
+
+Dopo il setup, esegui tutti i passaggi dalla **Guida unica studenti**: QC, allineamento, variant calling e interpretazione.
