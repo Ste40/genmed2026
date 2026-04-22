@@ -115,6 +115,35 @@ sort -k10,10n $OUT/mock_gene_coverage.tsv | head
 ## 9) Visualizzazione manuale in IGV (consigliato)
 Per validare visivamente la variante candidata, apri i file in **IGV (Integrative Genomics Viewer)**.
 
+### 9.0 Come aprire IGV (nota importante su questo ambiente)
+Nel nostro ambiente didattico Jupyter/Binder **non è previsto un comando shell `igv`**.
+Inoltre `igv-notebook` è una libreria Python: non la usi scrivendo `igv` dentro il prompt `>>>`.
+
+Usa questo schema pratico:
+
+1. **Da terminale (non dentro `>>>`) verifica/installa il pacchetto:**
+   ```bash
+   python -c "import igv_notebook; print('igv_notebook OK')"
+   # se fallisce:
+   pip install igv-notebook
+   ```
+2. **Riavvia il kernel del notebook** (se hai appena installato).
+3. **In una cella Jupyter (non nel terminale `python`)** esegui:
+   ```python
+   import igv_notebook
+   igv_notebook.init()
+   ```
+4. **Nella cella successiva** crea e visualizza il browser IGV (vedi esempio completo in `GUIDA_TOOLS.md`).
+
+Se vedi errori tipo `NameError: name 'igv' is not defined`, significa che stai digitando `igv` nel prompt Python: non è il comando corretto in quel contesto.
+
+Se vedi `AttributeError: 'NoneType' object has no attribute 'kernel'` durante `igv_notebook.init()`, significa che hai lanciato il codice **fuori da un kernel Jupyter attivo** (ad esempio nel REPL `python` da terminale). In quel caso:
+- esci dal REPL (`exit()`),
+- apri un notebook in JupyterLab,
+- riesegui `import igv_notebook` + `igv_notebook.init()` dentro una cella.
+
+Per **Desktop locale** (fuori da Binder/Jupyter), avvia IGV dalla GUI oppure con lo script dell'installazione (`igv.sh` su Linux/macOS, `igv.bat` su Windows).
+
 ### 9.1 Preparazione file
 Assicurati di avere:
 - riferimento: `data/reference/mock_reference.fa`
