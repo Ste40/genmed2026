@@ -18,7 +18,11 @@ FASTQ=data/dataset7/sample7.fastq
 REF=data/reference/mock_reference.fa
 OUT=results/$CASE
 mkdir -p "$OUT/fastqc"
-[ -r "$FASTQ" ] || { echo "Errore: FASTQ non trovato: $FASTQ"; exit 1; }
+if [ ! -r "$FASTQ" ]; then
+  echo "Errore: FASTQ non trovato: $FASTQ"
+  echo "Controlla di essere in /workspace/genmed2026 e verifica con: ls data"
+  echo "Struttura attesa: binder  cases  data  GUIDA_TOOLS.md  README.md  results  work"
+fi
 ```
 
 
