@@ -134,12 +134,9 @@ Usa questo schema pratico:
    import igv_notebook
    igv_notebook.init()
    ```
-   > Se dopo quel blocco vedi il banner `Python 3.x ...` e il prompt `>>>`, sei nel REPL del terminale (non in una cella notebook): fai `exit()` e sposta il codice in Jupyter.
 4. **Nella cella successiva** crea e visualizza il browser IGV (vedi esempio completo in `GUIDA_TOOLS.md`).
 
 Se vedi errori tipo `NameError: name 'igv' is not defined`, significa che stai digitando `igv` nel prompt Python: non è il comando corretto in quel contesto.
-
-Se vedi `import-im6.q16: unable to open X server` dopo aver scritto `import igv_notebook`, stai eseguendo `import ...` nel **terminale bash** (dove `import` è un comando di ImageMagick), non in Python/Jupyter. Apri una cella notebook oppure usa `python -c "import igv_notebook"`.
 
 Se vedi `AttributeError: 'NoneType' object has no attribute 'kernel'` durante `igv_notebook.init()`, significa che hai lanciato il codice **fuori da un kernel Jupyter attivo** (ad esempio nel REPL `python` da terminale). In quel caso:
 - esci dal REPL (`exit()`),
