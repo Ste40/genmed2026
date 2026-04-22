@@ -11,7 +11,6 @@ Per l'intero workflow (QC -> cleaning opzionale -> allineamento -> variant calli
 
 ```bash
 # Esegui i comandi dalla root del repository
-cd /workspace/genmed2026
 
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq

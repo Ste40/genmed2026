@@ -12,7 +12,6 @@ Imposta il numero del caso e il FASTQ assegnato.
 
 ```bash
 # Esegui i comandi dalla root del repository
-cd /workspace/genmed2026
 
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq
