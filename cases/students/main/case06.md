@@ -43,7 +43,7 @@ Domande:
 
 2. **Pulizia/filtri (se necessari in base al QC)**
 ```bash
-cutadapt -u -3 -o "$OUT/clean.fastq" "$FASTQ" > "$OUT/cutadapt.log"
+cutadapt -a AGATCGGAAGAGC -o "$OUT/clean.fastq" "$FASTQ" > "$OUT/cutadapt.log"
 ```
 Domande:
 - Hai applicato un filtro? Perché?
