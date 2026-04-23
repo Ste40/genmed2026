@@ -67,8 +67,9 @@ samtools depth results/case01/aln.sorted.bam > results/case01/depth.tsv
 Variant calling e filtro qualità.
 ```bash
 bcftools mpileup -f data/reference/mock_reference.fa results/case01/aln.sorted.bam -Ou | \
-  bcftools call -mv -Ov -o results/case01/raw.vcf
-bcftools filter -i 'QUAL>=20 && DP>=6' results/case01/raw.vcf -Ov -o results/case01/final_lenient.vcf
+  bcftools call -mv -Ob -o results/case01/raw.bcf
+bcftools view results/case01/raw.bcf -Ov -o results/case01/raw.vcf
+bcftools filter -i 'QUAL>=20 && DP>=6' results/case01/raw.bcf -Ov -o results/case01/final_lenient.vcf
 ```
 
 ## BEDTools
