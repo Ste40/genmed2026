@@ -76,8 +76,4 @@ Domande:
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
 
-## Nota specifica del caso
-
-Il QC risulta generalmente buono. In fase di interpretazione, valuta attentamente copertura e supporto su gene3: il caso è progettato per discutere quando proporre un re-sequenziamento.
-
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
