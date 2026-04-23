@@ -76,8 +76,4 @@ Domande:
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
 
-## Nota specifica del caso
-
-Questo caso è costruito come controllo positivo: QC buono, circa una decina di varianti candidate iniziali e una sola pienamente coerente con il sospetto clinico su gene2.
-
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
