@@ -65,10 +65,11 @@ Domande guida:
 
 ```bash
 bcftools mpileup -f "$REF" "$OUT/aln.sorted.bam" -Ou | \
-  bcftools call -mv -Ov -o "$OUT/raw.vcf"
+  bcftools call -mv -Ob -o "$OUT/raw.bcf"
 
-bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.vcf" -Ov -o "$OUT/final_lenient.vcf"
-bcftools filter -i 'QUAL>=30 && DP>=10' "$OUT/raw.vcf" -Ov -o "$OUT/final_strict.vcf"
+bcftools view "$OUT/raw.bcf" -Ov -o "$OUT/raw.vcf"
+bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.bcf" -Ov -o "$OUT/final_lenient.vcf"
+bcftools filter -i 'QUAL>=30 && DP>=10' "$OUT/raw.bcf" -Ov -o "$OUT/final_strict.vcf"
 ```
 
 Domande guida:
@@ -92,9 +93,14 @@ Domande guida:
 
 Per verificare rapidamente regioni poco coperte o confermare varianti candidate a livello read-level:
 
+Domanda guida (dopo ispezione in IGV e calcolo coverage per gene):
+- Ci sono segnali di copertura insufficiente su regioni di interesse?
+
 ```python
 import igv_notebook
 igv_notebook.init()
+
+CASE = "case01"
 
 b = igv_notebook.Browser({
     "reference": {

@@ -59,12 +59,12 @@ samtools flagstat "$OUT/aln.sorted.bam" > "$OUT/flagstat.txt"
 ```
 Domande:
 - Percentuale di reads mappate correttamente?
-- Ci sono segnali di copertura insufficiente su regioni di interesse?
 
 4. **Variant calling**
 ```bash
-bcftools mpileup -f "$REF" "$OUT/aln.sorted.bam" -Ou |   bcftools call -mv -Ov -o "$OUT/raw.vcf"
-bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.vcf" -Ov -o "$OUT/final_lenient.vcf"
+bcftools mpileup -f "$REF" "$OUT/aln.sorted.bam" -Ou |   bcftools call -mv -Ob -o "$OUT/raw.bcf"
+bcftools view "$OUT/raw.bcf" -Ov -o "$OUT/raw.vcf"
+bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.bcf" -Ov -o "$OUT/final_lenient.vcf"
 ```
 Domande:
 - Quante varianti totali trovi nel raw VCF?
@@ -82,9 +82,15 @@ Domande:
 
 Dopo aver generato almeno `aln.sorted.bam` e `final_lenient.vcf`, apri IGV nel notebook con:
 
+Domande (dopo ispezione in IGV e calcolo coverage per gene):
+- Ci sono segnali di copertura insufficiente su regioni di interesse?
+
+
 ```python
 import igv_notebook
 igv_notebook.init()
+
+CASE = "case08"
 
 b = igv_notebook.Browser({
     "reference": {
