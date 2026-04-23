@@ -12,8 +12,9 @@
 - `clean.fastq` (se creato)
 - `aln.sorted.bam` + `aln.sorted.bam.bai`
 - `flagstat.txt`, `depth.tsv`
-- `raw.vcf`, `final_lenient.vcf`, `final_strict.vcf`
-- `final_lenient.annotated.vcf`, `mock_gene_coverage.tsv`
+- `raw.vcf`
+- `raw.annotated.vcf`, `mock_gene_coverage.tsv`
+- *(opzionale)* `final_lenient.vcf`, `final_strict.vcf`
 
 ## 2) Formati file (in modo semplice)
 
@@ -64,17 +65,18 @@ samtools depth results/case01/aln.sorted.bam > results/case01/depth.tsv
 ```
 
 ## BCFtools
-Variant calling e filtro qualità.
+Variant calling; filtro qualità opzionale (come esempio).
 ```bash
 bcftools mpileup -f data/reference/mock_reference.fa results/case01/aln.sorted.bam -Ou | \
   bcftools call -mv -Ob -o results/case01/raw.bcf
 bcftools view results/case01/raw.bcf -Ov -o results/case01/raw.vcf
-bcftools filter -i 'QUAL>=20 && DP>=6' results/case01/raw.bcf -Ov -o results/case01/final_lenient.vcf
+# opzionale: esempio di filtro
+# bcftools filter -i 'QUAL>=20 && DP>=6' results/case01/raw.bcf -Ov -o results/case01/final_lenient.vcf
 ```
 
 ## BEDTools
 Intersezione varianti-annotazione e copertura per gene.
 ```bash
-bedtools intersect -header -wa -a results/case01/final_lenient.vcf -b data/reference/mock_annotation.gff > results/case01/final_lenient.annotated.vcf
+bedtools intersect -header -wa -a results/case01/raw.vcf -b data/reference/mock_annotation.gff > results/case01/raw.annotated.vcf
 bedtools coverage -a data/reference/mock_annotation.gff -b results/case01/aln.sorted.bam -mean > results/case01/mock_gene_coverage.tsv
 ```

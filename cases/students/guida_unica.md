@@ -61,32 +61,34 @@ Domande guida:
 - Percentuale di reads mappate?
 - Profondità media?
 
-## 5) Variant calling e filtro
+## 5) Variant calling (filtri opzionali)
 
 ```bash
 bcftools mpileup -f "$REF" "$OUT/aln.sorted.bam" -Ou | \
   bcftools call -mv -Ob -o "$OUT/raw.bcf"
 
 bcftools view "$OUT/raw.bcf" -Ov -o "$OUT/raw.vcf"
-bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.bcf" -Ov -o "$OUT/final_lenient.vcf"
-bcftools filter -i 'QUAL>=30 && DP>=10' "$OUT/raw.bcf" -Ov -o "$OUT/final_strict.vcf"
+
+# Opzionale (esempi): filtri qualità per confrontare l'effetto
+# bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.bcf" -Ov -o "$OUT/final_lenient.vcf"
+# bcftools filter -i 'QUAL>=30 && DP>=10' "$OUT/raw.bcf" -Ov -o "$OUT/final_strict.vcf"
 ```
 
 Domande guida:
 - Quante varianti pre-filtering?
-- Quante varianti dopo filtri?
-- Che tipo di varianti sono state identificate post-filtering?
+- Che tipo di varianti sono state identificate nel raw VCF?
+- Se applichi i filtri opzionali, cosa cambia?
 
 ## 6) Contestualizzazione su geni mock
 
 ```bash
 ANNOT=data/reference/mock_annotation.gff
-bedtools intersect -header -wa -a "$OUT/final_lenient.vcf" -b "$ANNOT" > "$OUT/final_lenient.annotated.vcf"
+bedtools intersect -header -wa -a "$OUT/raw.vcf" -b "$ANNOT" > "$OUT/raw.annotated.vcf"
 bedtools coverage -a "$ANNOT" -b "$OUT/aln.sorted.bam" -mean > "$OUT/mock_gene_coverage.tsv"
 ```
 
 Domande guida:
-- Le varianti finali cadono nel gene sospetto?
+- Le varianti candidate (raw VCF) cadono nel gene sospetto?
 - Serve conferma tecnica o re-sequenziamento?
 
 ## 7) Apertura IGV notebook (verifica visiva di copertura e varianti)
@@ -119,8 +121,8 @@ b = igv_notebook.Browser({
             "type": "alignment"
         },
         {
-            "name": f"{CASE} final lenient VCF",
-            "url": f"/results/{CASE}/final_lenient.vcf",
+            "name": f"{CASE} raw VCF",
+            "url": f"/results/{CASE}/raw.vcf",
             "format": "vcf",
             "type": "variant",
             "displayMode": "EXPANDED"
@@ -139,4 +141,4 @@ b = igv_notebook.Browser({
 b
 ```
 
-Suggerimento: prima di lanciare IGV assicurati di avere `samtools index "$OUT/aln.sorted.bam"` e di aver già creato `"$OUT/final_lenient.vcf"`.
+Suggerimento: prima di lanciare IGV assicurati di avere `samtools index "$OUT/aln.sorted.bam"` e di aver già creato `"$OUT/raw.vcf"`.

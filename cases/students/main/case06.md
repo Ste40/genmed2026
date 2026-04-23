@@ -64,17 +64,19 @@ Domande:
 ```bash
 bcftools mpileup -f "$REF" "$OUT/aln.sorted.bam" -Ou |   bcftools call -mv -Ob -o "$OUT/raw.bcf"
 bcftools view "$OUT/raw.bcf" -Ov -o "$OUT/raw.vcf"
-bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.bcf" -Ov -o "$OUT/final_lenient.vcf"
+
+# Opzionale (esempio): filtro qualità se vuoi restringere ulteriormente
+# bcftools filter -i 'QUAL>=20 && DP>=6' "$OUT/raw.bcf" -Ov -o "$OUT/final_lenient.vcf"
 ```
 Domande:
 - Quante varianti totali trovi nel raw VCF?
-- Quante restano dopo il filtro?
 - Che tipi di varianti osservi (SNV/INDEL/delezioni/inserzioni)?
+- Se applichi un filtro opzionale, cosa cambia rispetto al raw VCF?
 
 5. **Annotazione e copertura con bedtools**
 ```bash
 ANNOT=data/reference/mock_annotation.gff
-bedtools intersect -header -wa -a "$OUT/final_lenient.vcf" -b "$ANNOT" > "$OUT/final_lenient.annotated.vcf"
+bedtools intersect -header -wa -a "$OUT/raw.vcf" -b "$ANNOT" > "$OUT/raw.annotated.vcf"
 bedtools coverage -a "$ANNOT" -b "$OUT/aln.sorted.bam" -mean > "$OUT/mock_gene_coverage.tsv"
 ```
 Domande:
@@ -83,13 +85,13 @@ Domande:
 - Ci sono geni con copertura bassa che richiedono cautela interpretativa?
 
 6. **Interpretazione clinica guidata**
-- Confronta varianti finali con il sospetto diagnostico indicato.
+- Confronta varianti candidate (raw VCF) con il sospetto diagnostico indicato.
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
 
 ## Apertura IGV notebook (controllo copertura/varianti)
 
-Dopo aver generato almeno `aln.sorted.bam` e `final_lenient.vcf`, apri IGV nel notebook con:
+Dopo aver generato almeno `aln.sorted.bam` e `raw.vcf`, apri IGV nel notebook con:
 
 Domande (dopo ispezione in IGV e calcolo coverage per gene):
 - Ci sono segnali di copertura insufficiente su regioni di interesse?
@@ -118,8 +120,8 @@ b = igv_notebook.Browser({
             "type": "alignment"
         },
         {
-            "name": f"{CASE} final lenient VCF",
-            "url": f"/results/{CASE}/final_lenient.vcf",
+            "name": f"{CASE} raw VCF",
+            "url": f"/results/{CASE}/raw.vcf",
             "format": "vcf",
             "type": "variant",
             "displayMode": "EXPANDED"
