@@ -87,3 +87,50 @@ bedtools coverage -a "$ANNOT" -b "$OUT/aln.sorted.bam" -mean > "$OUT/mock_gene_c
 Domande guida:
 - Le varianti finali cadono nel gene sospetto?
 - Serve conferma tecnica o re-sequenziamento?
+
+## 7) Apertura IGV notebook (verifica visiva di copertura e varianti)
+
+Per verificare rapidamente regioni poco coperte o confermare varianti candidate a livello read-level:
+
+```python
+import igv_notebook
+igv_notebook.init()
+
+b = igv_notebook.Browser({
+    "reference": {
+        "id": "mock_ref",
+        "name": "Mock reference",
+        "fastaURL": "../../data/reference/mock_reference.fa",
+        "indexURL": "../../data/reference/mock_reference.fa.fai"
+    },
+    "locus": "mock_chromosome:50-150",
+    "tracks": [
+        {
+            "name": f"{CASE} BAM",
+            "url": f"../../results/{CASE}/aln.sorted.bam",
+            "indexURL": f"../../results/{CASE}/aln.sorted.bam.bai",
+            "format": "bam",
+            "type": "alignment"
+        },
+        {
+            "name": f"{CASE} final lenient VCF",
+            "url": f"../../results/{CASE}/final_lenient.vcf",
+            "format": "vcf",
+            "type": "variant",
+            "displayMode": "EXPANDED"
+        },
+        {
+            "name": "Mock annotation",
+            "url": "../../data/reference/mock_annotation.gff",
+            "format": "gff",
+            "type": "annotation",
+            "displayMode": "EXPANDED",
+            "height": 120
+        }
+    ]
+})
+
+b
+```
+
+Suggerimento: prima di lanciare IGV assicurati di avere `samtools index "$OUT/aln.sorted.bam"` e di aver già creato `"$OUT/final_lenient.vcf"`.
