@@ -15,7 +15,7 @@ Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico s
 ## Setup rapido
 
 ```bash
-cd /workspace/genmed2026
+cd $HOME
 CASE=case05
 FASTQ=data/dataset5/sample5.fastq
 REF=data/reference/mock_reference.fa
@@ -75,9 +75,5 @@ Domande:
 - Confronta varianti finali con il sospetto diagnostico indicato.
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
-
-## Nota specifica del caso
-
-QC generale accettabile. La variante sospetta può comparire ma con qualità bassa: discuti criticamente limiti del dato e affidabilità clinica.
 
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
