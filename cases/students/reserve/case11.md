@@ -1,14 +1,14 @@
-# Caso 01
+# Caso 11
 
 ## Scenario clinico (mock)
 
-Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico segnala come priorità diagnostica: **una variante in gene2 (SNV prioritario)**.
+Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico segnala come priorità diagnostica: **SNV da confermare in gene2**.
 
 > Obiettivo: eseguire la pipeline bioinformatica completa e discutere se i dati supportano o no l'ipotesi clinica.
 
 ## Dataset assegnato
 
-- FASTQ: `data/dataset1/sample1.fastq`
+- FASTQ: `data/dataset11/sample11.fastq`
 - Riferimento: `data/reference/mock_reference.fa`
 - Annotazione geni mock: `data/reference/mock_annotation.gff`
 
@@ -16,8 +16,8 @@ Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico s
 
 ```bash
 cd /workspace/genmed2026
-CASE=case01
-FASTQ=data/dataset1/sample1.fastq
+CASE=case11
+FASTQ=data/dataset11/sample11.fastq
 REF=data/reference/mock_reference.fa
 OUT=results/$CASE
 mkdir -p "$OUT/fastqc"
@@ -78,6 +78,6 @@ Domande:
 
 ## Nota specifica del caso
 
-Questo caso è costruito come controllo positivo: QC buono, circa una decina di varianti candidate iniziali e una sola pienamente coerente con il sospetto clinico su gene2.
+Caso di riserva aggiuntivo per arrivare a 5 riserve totali. QC generalmente buono, utile come caso extra per recuperi/verifiche.
 
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
