@@ -5,7 +5,7 @@ Questa guida è comune a tutti i casi e non contiene la soluzione diagnostica.
 ## 1) Setup
 
 ```bash
-cd /workspace/genmed2026
+cd $HOME
 CASE=case01
 FASTQ=data/dataset1/sample1.fastq
 REF=data/reference/mock_reference.fa
