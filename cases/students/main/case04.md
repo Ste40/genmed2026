@@ -15,7 +15,7 @@ Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico s
 ## Setup rapido
 
 ```bash
-cd /workspace/genmed2026
+cd $HOME
 CASE=case04
 FASTQ=data/dataset4/sample4.fastq
 REF=data/reference/mock_reference.fa
@@ -75,9 +75,5 @@ Domande:
 - Confronta varianti finali con il sospetto diagnostico indicato.
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
-
-## Nota specifica del caso
-
-Sono presenti adapter comuni (es. AGATCGGAAGAGC). È richiesto trimming adapter prima dell'allineamento; dopo pulizia il segnale variante diventa interpretabile.
 
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
