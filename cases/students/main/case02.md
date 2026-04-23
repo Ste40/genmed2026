@@ -76,8 +76,3 @@ Domande:
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
 
-## Nota specifica del caso
-
-Nel QC dovrebbe emergere una sottopopolazione di reads corte. Dopo filtro di lunghezza, restano più varianti candidate ma una sola delezione in gene3 coerente col sospetto.
-
-Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
