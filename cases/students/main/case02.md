@@ -71,7 +71,18 @@ Domande:
 - Quante restano dopo il filtro?
 - Che tipi di varianti osservi (SNV/INDEL/delezioni/inserzioni)?
 
-5. **Interpretazione clinica guidata**
+5. **Annotazione e copertura con bedtools**
+```bash
+ANNOT=data/reference/mock_annotation.gff
+bedtools intersect -header -wa -a "$OUT/final_lenient.vcf" -b "$ANNOT" > "$OUT/final_lenient.annotated.vcf"
+bedtools coverage -a "$ANNOT" -b "$OUT/aln.sorted.bam" -mean > "$OUT/mock_gene_coverage.tsv"
+```
+Domande:
+- Quali varianti cadono in regioni annotate nel file GFF?
+- Qual è la copertura media per ciascun gene mock?
+- Ci sono geni con copertura bassa che richiedono cautela interpretativa?
+
+6. **Interpretazione clinica guidata**
 - Confronta varianti finali con il sospetto diagnostico indicato.
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
