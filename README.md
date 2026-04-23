@@ -7,7 +7,7 @@ Questo repository contiene il materiale didattico per un'esercitazione di bioinf
 1. Comprendere i principali formati bioinformatici (FASTA, FASTQ, SAM/BAM, VCF, GFF/TSV).
 2. Eseguire un controllo qualità delle reads e interpretarne i risultati.
 3. Applicare una pipeline completa: FASTQ → allineamento → variant calling.
-4. Confrontare e discutere output/metriche tra casi con caratteristiche diverse.
+4. Confrontare e discutere output/metriche tra casi con caratteristiche diverse, inclusi casi con problemi reali di QC/preprocessing.
 
 ---
 
@@ -35,7 +35,7 @@ L'ambiente software è definito in `binder/environment.yml` e include, tra gli a
 
 1. Avvia Binder.
 2. Apri l'indice casi in `cases/README.md`.
-3. Per gli studenti: inizia da `cases/students/README.md` e poi dai casi `main/`.
+3. Per gli studenti: inizia da `cases/students/README.md`, poi usa `cases/students/guida_unica.md` e il case assegnato.
 4. Per il docente: usa `cases/instructor/README.md` per la mappa didattica dei case.
 5. Durante il lavoro, usa `GUIDA_TOOLS.md` come riferimento su comandi, input/output e metriche.
 

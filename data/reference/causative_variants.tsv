@@ -1,12 +1,12 @@
-sample	gene	position_1based	ref	alt
-sample1	gene1	100	T	A
-sample2	gene2	850	G	T
-sample3	gene3	1520	C	G
-sample4	gene1	300	A	C
-sample5	gene2	900	T	A
-sample6	gene2	850	G	T
-sample7	gene1	100	T	A
-sample7	gene1	300	A	C
-sample8	gene3	1520	C	G
-sample9	gene2	900	T	A
-sample10	gene1	300	A	C
+sample	gene	position_1based	ref	alt	note
+sample1	gene2	850	G	A	SNV candidate coerente con sospetto gene2
+sample2	gene3	1522	CT	C	delezione 1bp in gene3
+sample3	gene3	1604	C	T	SNV sospetta ma supporto insufficiente
+sample4	gene1	300	A	AT	piccola inserzione in gene1
+sample5	gene2	900	T	A	SNV con qualità bassa (da confermare)
+sample6	gene1	118	G	A	SNV dopo trimming terminale
+sample7	gene1	100	T	A	controllo riserva
+sample8	gene3	1520	C	G	caso riserva rumoroso
+sample9	gene2	900	T	A	caso riserva con N
+sample10	gene1	300	A	C	caso riserva low depth
+sample11	gene2	870	C	T	caso riserva extra

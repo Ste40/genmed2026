@@ -3,6 +3,8 @@
 In questa pagina ho raccolto, in modo organico, i software che usiamo durante l'esercitazione.
 L'idea è avere un riferimento unico: cosa fa ogni strumento, quando lo uso, che file gli do in ingresso, cosa mi restituisce e quali metriche vale la pena leggere con attenzione.
 
+Per una versione operativa sintetica pensata per studenti principianti vedi anche `cases/students/file_formati_tool.md`.
+
 ---
 
 ## Il flusso completo, in poche righe
