@@ -1,6 +1,6 @@
 # Guida unica studenti (workflow standard)
 
-Questa guida è comune a tutti i casi e non contiene la soluzione diagnostica.
+Questa guida è comune a tutti i casi.
 
 ## 1) Setup
 
@@ -58,9 +58,8 @@ samtools depth "$OUT/aln.sorted.bam" > "$OUT/depth.tsv"
 ```
 
 Domande guida:
-- Percentuale mapped?
+- Percentuale di reads mappate?
 - Profondità media?
-- Zone con copertura molto bassa?
 
 ## 5) Variant calling e filtro
 
@@ -73,9 +72,9 @@ bcftools filter -i 'QUAL>=30 && DP>=10' "$OUT/raw.vcf" -Ov -o "$OUT/final_strict
 ```
 
 Domande guida:
-- Quante varianti raw?
+- Quante varianti pre-filtering?
 - Quante varianti dopo filtri?
-- Quante SNV vs INDEL?
+- Che tipo di varianti sono state identificate post-filtering?
 
 ## 6) Contestualizzazione su geni mock
 
@@ -87,5 +86,4 @@ bedtools coverage -a "$ANNOT" -b "$OUT/aln.sorted.bam" -mean > "$OUT/mock_gene_c
 
 Domande guida:
 - Le varianti finali cadono nel gene sospetto?
-- Il supporto (DP/QUAL) è sufficiente per una conclusione?
 - Serve conferma tecnica o re-sequenziamento?
