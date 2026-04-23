@@ -15,7 +15,7 @@ Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico s
 ## Setup rapido
 
 ```bash
-cd /workspace/genmed2026
+cd $HOME
 CASE=case07
 FASTQ=data/dataset7/sample7.fastq
 REF=data/reference/mock_reference.fa
