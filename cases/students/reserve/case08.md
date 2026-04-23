@@ -15,7 +15,7 @@ Paziente con sospetto di malattia genetica rara in pannello mirato. Il clinico s
 ## Setup rapido
 
 ```bash
-cd /workspace/genmed2026
+cd $HOME
 CASE=case08
 FASTQ=data/dataset8/sample8.fastq
 REF=data/reference/mock_reference.fa
@@ -77,7 +77,5 @@ Domande:
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
 
 ## Nota specifica del caso
-
-Caso di riserva con pattern più rumoroso (dupliche/eterogeneità). Obiettivo didattico: confronto tra filtri lenient e strict.
 
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
