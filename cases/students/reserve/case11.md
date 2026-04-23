@@ -76,8 +76,4 @@ Domande:
 - Verifica gene/locus (in base a `mock_annotation.gff`) e qualità (QUAL, DP).
 - Motiva la scelta finale o la necessità di ripetere il sequenziamento.
 
-## Nota specifica del caso
-
-Caso di riserva aggiuntivo per arrivare a 5 riserve totali. QC generalmente buono, utile come caso extra per recuperi/verifiche.
-
 Per i dettagli generali consulta: [Guida unica studenti](../guida_unica.md).
