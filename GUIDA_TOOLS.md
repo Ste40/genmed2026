@@ -267,8 +267,8 @@ b = igv_notebook.Browser(
         "reference": {
             "id": "mock_ref",
             "name": "Mock reference",
-            "fastaURL": "../../data/reference/mock_reference.fa",
-            "indexURL": "../../data/reference/mock_reference.fa.fai"
+            "fastaURL": "/data/reference/mock_reference.fa",
+            "indexURL": "/data/reference/mock_reference.fa.fai"
         },
         "locus": "mock_chromosome:50-150"
     }

@@ -109,28 +109,28 @@ b = igv_notebook.Browser({
     "reference": {
         "id": "mock_ref",
         "name": "Mock reference",
-        "fastaURL": "../../data/reference/mock_reference.fa",
-        "indexURL": "../../data/reference/mock_reference.fa.fai"
+        "fastaURL": "/data/reference/mock_reference.fa",
+        "indexURL": "/data/reference/mock_reference.fa.fai"
     },
     "locus": "mock_chromosome:50-150",
     "tracks": [
         {
             "name": f"{CASE} BAM",
-            "url": f"../../results/{CASE}/aln.sorted.bam",
-            "indexURL": f"../../results/{CASE}/aln.sorted.bam.bai",
+            "url": f"/results/{CASE}/aln.sorted.bam",
+            "indexURL": f"/results/{CASE}/aln.sorted.bam.bai",
             "format": "bam",
             "type": "alignment"
         },
         {
             "name": f"{CASE} final lenient VCF",
-            "url": f"../../results/{CASE}/final_lenient.vcf",
+            "url": f"/results/{CASE}/final_lenient.vcf",
             "format": "vcf",
             "type": "variant",
             "displayMode": "EXPANDED"
         },
         {
             "name": "Mock annotation",
-            "url": "../../data/reference/mock_annotation.gff",
+            "url": "/data/reference/mock_annotation.gff",
             "format": "gff",
             "type": "annotation",
             "displayMode": "EXPANDED",
