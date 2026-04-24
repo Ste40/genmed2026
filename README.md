@@ -41,7 +41,7 @@ L'ambiente software è definito in `binder/environment.yml` e include, tra gli a
 
 ---
 
-## Workflow didattico (alto livello)
+## Workflow didattico
 
 Ogni caso segue lo stesso schema generale:
 
