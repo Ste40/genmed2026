@@ -1,6 +1,6 @@
-# Hands-on session nell'ambito del progetto scuola diffusa D3 4H
+# Corso di Informatica per la scuola di specializzazione in genetica medica III Anno 
 
-Questo repository contiene il materiale didattico per un'esercitazione di bioinformatica NGS in ambiente UNIX/Bash nell'ambito della scuola diffusa organizzata dalla fondazione D34H.
+Questo repository contiene il materiale didattico per un'esercitazione di bioinformatica NGS in ambiente UNIX/Bash.
 
 ## Obiettivi formativi
 
