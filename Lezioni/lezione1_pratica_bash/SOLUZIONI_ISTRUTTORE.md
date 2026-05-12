@@ -27,7 +27,7 @@ grep "paziente" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt > Lez
 
 ## Esercizio 4
 ```bash
-sed 's/stabile/monitorato/g' Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt > Lezioni/lezione1_pratica_bash/referto_editato.txt
+sed 's/stabile/monitorato/' Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt > Lezioni/lezione1_pratica_bash/referto_editato.txt
 grep "monitorato" Lezioni/lezione1_pratica_bash/referto_editato.txt
 ```
 
