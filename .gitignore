@@ -1,0 +1,5 @@
+# File riservati docente (non tracciati nel repo studenti)
+private_instructor/
+Lezioni/lezione1_pratica_bash/SOLUZIONI_ISTRUTTORE.md
+cases/instructor/*
+!cases/instructor/README.md
