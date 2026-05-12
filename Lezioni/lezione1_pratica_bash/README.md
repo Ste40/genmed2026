@@ -12,8 +12,6 @@ Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e 
 - salvare output con reindirizzamento e pipe;
 - creare un piccolo script `.sh`.
 
-Durata totale: **circa 60 minuti**.
-
 ---
 
 ## File usati (specifici della lezione 1)
@@ -140,9 +138,3 @@ Cosa abbiamo imparato:
 4. fare sostituzioni base con `sed`;
 5. automatizzare un compito semplice con uno script `.sh`.
 
----
-
-## Nota per il docente
-
-Per evitare che gli studenti vedano le soluzioni, non committare file di soluzione nel repository condiviso.
-Conserva i materiali riservati in `private_instructor/` (ignorata da Git) o in un repository privato separato.
