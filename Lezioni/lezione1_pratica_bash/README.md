@@ -109,7 +109,7 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 ## Esercizio 5 (più difficile) — Commentario su script `.sh`
 **Tempo:** 20 minuti
 
-In questo esercizio lo script è **già pronto**: `Lezioni/lezione1_pratica_bash/sostituisci_parola.sh`.
+In questo esercizio lo script è **già pronto**: `Lezioni/lezione1_pratica_bash/materiali/sostituisci_parola.sh`.
 
 Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi parametri.
 
@@ -119,14 +119,17 @@ Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi
    - dove vengono letti i parametri (`$1`, `$2`, `$3`, `$4`);
    - il comando che fa la sostituzione (`sed`);
    - la riga che stampa il messaggio finale.
-3. Verifica che sia già eseguibile (`ls -l sostituisci_parola.sh`).
-4. Prova a eseguirlo su `materiali/frasi_cliniche.txt`.
+3. Verifica che sia già eseguibile (`ls -l materiali/sostituisci_parola.sh`).
+4. Prova a eseguirlo su `materiali/frasi_cliniche.txt` usando lo script in `materiali/`.
 5. Verifica il file di output generato.
 
 ### Aiutino (non soluzione completa)
 - Prima di eseguirlo, assicurati che abbia permessi di esecuzione.
 - Ricorda: lo script si aspetta **4 argomenti** in questo ordine:
-  1) file input, 2) parola da cercare, 3) parola sostitutiva, 4) file output.
+  - 1) file input
+  - 2) parola da cercare
+  - 3) parola sostitutiva
+  - 4) file output
 - Se non ricordi la sintassi, usa gli helper: `bash --help`, `chmod --help`, `sed --help`.
 
 ---
@@ -142,9 +145,3 @@ Cosa abbiamo imparato:
 5. automatizzare un compito semplice con uno script `.sh`.
 
 ---
-
-## Nota per il docente
-
-Per evitare che gli studenti vedano le soluzioni, non committare file di soluzione nel repository condiviso.
-
-Per vedere/modificare tu le soluzioni: copia `SOLUZIONI_ISTRUTTORE.template.md` in `private_instructor/lezione1/SOLUZIONI_ISTRUTTORE.md` e lavora su quel file locale (ignorato da Git).
