@@ -142,6 +142,7 @@ Cosa abbiamo imparato:
 
 ---
 
-## Nota per l'istruttore
+## Nota per il docente
 
-Le soluzioni operative complete sono separate in `Lezioni/lezione1_pratica_bash/SOLUZIONI_ISTRUTTORE.md` e non sono incluse nel testo consegnato agli studenti.
+Per evitare che gli studenti vedano le soluzioni, non committare file di soluzione nel repository condiviso.
+Conserva i materiali riservati in `private_instructor/` (ignorata da Git) o in un repository privato separato.

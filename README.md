@@ -45,7 +45,7 @@ Per supportare la riorganizzazione del corso in 4 lezioni, il repository include
 1. Avvia Binder.
 2. Apri l'indice casi in `cases/README.md`.
 3. Per gli studenti: inizia da `cases/students/README.md`, poi usa `cases/students/guida_unica.md` e il case assegnato.
-4. Per il docente: usa `cases/instructor/README.md` per la mappa didattica dei case.
+4. Per il docente: nella versione studenti la cartella `cases/instructor/` è un placeholder senza soluzioni.
 5. Durante il lavoro, usa `GUIDA_TOOLS.md` come riferimento su comandi, input/output e metriche.
 
 ---
