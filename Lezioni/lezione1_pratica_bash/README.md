@@ -138,3 +138,10 @@ Cosa abbiamo imparato:
 4. fare sostituzioni base con `sed`;
 5. automatizzare un compito semplice con uno script `.sh`.
 
+---
+
+## Nota per il docente
+
+Per evitare che gli studenti vedano le soluzioni, non committare file di soluzione nel repository condiviso.
+
+Per vedere/modificare tu le soluzioni: copia `SOLUZIONI_ISTRUTTORE.template.md` in `private_instructor/lezione1/SOLUZIONI_ISTRUTTORE.md` e lavora su quel file locale (ignorato da Git).
