@@ -1,0 +1,5 @@
+Nel laboratorio didattico oggi analizziamo un testo di prova.
+Questo file serve solo per esercitarsi con i comandi base della bash.
+Ogni riga contiene una frase semplice e inventata.
+Gli studenti possono contare caratteri, cercare parole e salvare output.
+L'obiettivo è prendere confidenza con il terminale senza formati specialistici.
