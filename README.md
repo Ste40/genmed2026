@@ -47,7 +47,6 @@ Per supportare la riorganizzazione del corso in 4 lezioni, il repository include
 3. Per gli studenti: inizia da `cases/students/README.md`, poi usa `cases/students/guida_unica.md` e il case assegnato.
 4. Per il docente: nella versione studenti la cartella `cases/instructor/` è un placeholder senza soluzioni.
 5. Durante il lavoro, usa `GUIDA_TOOLS.md` come riferimento su comandi, input/output e metriche.
-6. Per il docente: crea/cura le soluzioni in `private_instructor/` (locale e non tracciata), partendo dal file `docs/COPIA_IN_LOCALE_SOLUZIONI.md`.
 
 ---
 
