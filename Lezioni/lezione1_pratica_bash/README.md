@@ -12,8 +12,6 @@ Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e 
 - salvare output con reindirizzamento e pipe;
 - creare un piccolo script `.sh`.
 
-Durata totale: **circa 60 minuti**.
-
 ---
 
 ## File usati (specifici della lezione 1)
@@ -101,35 +99,52 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 4. Verifica che `monitorato` compaia nel nuovo file.
 
 ### Come impostare i comandi
-- Usa `sed` con una sostituzione (`s/parolavecchia/parolanuova/g`).
+- Usa `sed` con una sostituzione.
 - Reindirizza l'output su un nuovo file, senza sovrascrivere l'originale.
 - Verifica il risultato cercando il termine sostitutivo nel file prodotto.
 - Per opzioni e varianti, consulta `sed --help`.
 
 ---
 
-## Esercizio 5 (più difficile) — Commentario su script `.sh`
+## Esercizio 5 (più difficile) — Mini script `.sh` (versione semplificata)
 **Tempo:** 20 minuti
 
-In questo esercizio lo script è **già pronto**: `Lezioni/lezione1_pratica_bash/sostituisci_parola.sh`.
+Obiettivo: creare uno script molto semplice (stile esempio "somma") che sostituisce una parola in un file.
 
-Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi parametri.
+### 1) Crea il file script
+```bash
+cd Lezioni/lezione1_pratica_bash
+nano sostituisci_parola.sh
+```
 
-### Cosa fare
-1. Apri il file e visualizza il contenuto (senza modificarlo).
-2. Individua nel codice:
-   - dove vengono letti i parametri (`$1`, `$2`, `$3`, `$4`);
-   - il comando che fa la sostituzione (`sed`);
-   - la riga che stampa il messaggio finale.
-3. Rendilo eseguibile.
-4. Prova a eseguirlo su `materiali/frasi_cliniche.txt`.
-5. Verifica il file di output generato.
+### 2) Incolla questo contenuto
+```bash
+#!/usr/bin/env bash
+input_file="$1"
+parola_vecchia="$2"
+parola_nuova="$3"
+output_file="$4"
 
-### Aiutino (non soluzione completa)
-- Prima di eseguirlo, assicurati che abbia permessi di esecuzione.
-- Ricorda: lo script si aspetta **4 argomenti** in questo ordine:
-  1) file input, 2) parola da cercare, 3) parola sostitutiva, 4) file output.
-- Se non ricordi la sintassi, usa gli helper: `bash --help`, `chmod --help`, `sed --help`.
+sed "s/${parola_vecchia}/${parola_nuova}/g" "$input_file" > "$output_file"
+echo "File creato: $output_file"
+```
+
+### 3) Rendi eseguibile lo script
+```bash
+chmod +x sostituisci_parola.sh
+```
+
+### 4) Eseguilo (esempio pronto)
+```bash
+./sostituisci_parola.sh materiali/frasi_cliniche.txt paziente soggetto output_sostituito.txt
+```
+
+### 5) Controlla il risultato
+```bash
+cat output_sostituito.txt
+```
+
+> Se serve, usa gli helper: `bash --help`, `sed --help`, `chmod --help`.
 
 ---
 
