@@ -1,16 +1,15 @@
 # Lezione 1 — Esercitazione pratica Bash (base)
 
-Questa esercitazione è pensata per specializzandi biologi/medici con poca esperienza di terminale.
 
 ## Obiettivo
 
 Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e imparare operazioni base:
 
 - visualizzare contenuti;
-- contare caratteri/righe;
+- contare caratteri e righe;
 - cercare parole o pattern;
 - sostituire testo;
-- salvare output con redirect e pipe;
+- salvare output con reindirizzamento e pipe;
 - creare un piccolo script `.sh`.
 
 Durata totale: **circa 60 minuti**.
@@ -26,11 +25,9 @@ Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
 - `referto_mock.txt`
 - `sequenza1.txt`
 
-> Nota: per questa lezione **non** usare file FASTA/VCF/GFF.
-
 ---
 
-## Usage rapido comandi
+## Legenda dei comandi comandi
 
 - `ls` → elenca file/cartelle
 - `cat` → mostra contenuto completo
@@ -48,7 +45,6 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 ---
 
 ## Esercizio 1 (facile) — Esplorazione file `.txt`
-**Tempo:** 10 minuti
 
 1. Vai nella root della repo.
 2. Elenca il contenuto di `Lezioni/lezione1_pratica_bash/materiali`.
@@ -66,7 +62,7 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 ---
 
 ## Esercizio 2 (facile-intermedio) — Conteggi e output
-**Tempo:** 10 minuti
+
 
 1. Conta quante righe ha `frasi_cliniche.txt`.
 2. Conta quanti caratteri ha `referto_mock.txt`.
@@ -77,13 +73,12 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 - Usa `wc` con l'opzione per il conteggio delle righe.
 - Usa `wc` con l'opzione per il conteggio dei caratteri.
 - Reindirizza il primo output su file con `>` e aggiungi il secondo con `>>`.
-- Usa `echo` con append (`>>`) per aggiungere la riga finale.
+- Usa `echo` con `>>` per aggiungere la riga finale.
 - Se hai dubbi sulle opzioni, consulta l'helper del comando (`wc --help`).
 
 ---
 
 ## Esercizio 3 (intermedio) — Ricerca parole con `grep`
-**Tempo:** 10 minuti
 
 1. Cerca nel file `frasi_cliniche.txt` tutte le righe che contengono `paziente`.
 2. Cerca tutte le righe che contengono `terapia` (senza distinzione maiuscole/minuscole).
@@ -92,7 +87,7 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 ### Come impostare i comandi
 - Usa `grep` con pattern testuale e percorso del file.
 - Per ricerca case-insensitive usa l'opzione dedicata di `grep`.
-- Combina `grep` con redirect (`>`) per salvare i risultati su file.
+- Combina `grep` con `>` per salvare i risultati su file.
 - Per vedere tutte le opzioni disponibili, usa `grep --help`.
 
 ---
@@ -106,7 +101,7 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 4. Verifica che `monitorato` compaia nel nuovo file.
 
 ### Come impostare i comandi
-- Usa `sed` con una sostituzione globale (`s/.../.../g`).
+- Usa `sed` con una sostituzione (`s/parolavecchia/parolanuova/g`).
 - Reindirizza l'output su un nuovo file, senza sovrascrivere l'originale.
 - Verifica il risultato cercando il termine sostitutivo nel file prodotto.
 - Per opzioni e varianti, consulta `sed --help`.
@@ -127,7 +122,7 @@ Obiettivo: creare uno script che sostituisce una parola con un'altra in un file 
 4. Eseguilo su `frasi_cliniche.txt`.
 
 ### Come impostare i comandi
-- Definisci nello script variabili positionali (`$1`, `$2`, `$3`, `$4`).
+- Definisci nello script variabili (`$1`, `$2`, `$3`, `$4`).
 - Usa `sed` nello script per la sostituzione globale.
 - Stampa un messaggio finale con il percorso del file generato.
 - Rendi eseguibile lo script e avvialo passando tutti i parametri richiesti.
@@ -137,7 +132,7 @@ Obiettivo: creare uno script che sostituisce una parola con un'altra in un file 
 
 ## Debrief finale (5 minuti)
 
-A fine esercitazione lo studente deve sapere:
+Cosa abbiamo imparato:
 
 1. orientarsi nelle cartelle e leggere file `.txt`;
 2. contare righe/caratteri;
