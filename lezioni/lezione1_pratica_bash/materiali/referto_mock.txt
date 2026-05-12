@@ -1,0 +1,6 @@
+Referto preliminare - laboratorio genetica
+Paziente: ID-2026-001
+Reparto: oncologia
+Nota: variante sospetta in BRCA1, da confermare.
+Nota: qualità del campione buona.
+Follow-up: discutere in meeting multidisciplinare.

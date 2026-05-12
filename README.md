@@ -31,6 +31,15 @@ L'ambiente software è definito in `binder/environment.yml` e include, tra gli a
 
 ---
 
+
+## Struttura lezioni (in aggiornamento)
+
+Per supportare la riorganizzazione del corso in 4 lezioni, il repository include una nuova area dedicata alle sessioni pratiche:
+
+- `lezioni/lezione1_pratica_bash/README.md`: esercitazione guidata Bash base (60–75 minuti) con 5 task a difficoltà crescente.
+
+---
+
 ## Come usare il materiale
 
 1. Avvia Binder.
