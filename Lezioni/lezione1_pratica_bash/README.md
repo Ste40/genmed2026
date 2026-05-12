@@ -108,25 +108,31 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 
 ---
 
-## Esercizio 5 (più difficile) — Mini script `.sh`
+## Esercizio 5 (più difficile) — Commentario su script `.sh`
 **Tempo:** 20 minuti
 
-Obiettivo: creare uno script che sostituisce una parola con un'altra in un file `.txt`.
+In questo esercizio lo script è **già pronto**: `Lezioni/lezione1_pratica_bash/materiali/sostituisci_parola.sh`.
 
-1. Crea il file `Lezioni/lezione1_pratica_bash/sostituisci_parola.sh`.
-2. Inserisci uno script che:
-   - legge input file, parola da cercare, parola sostitutiva;
-   - usa `sed` per fare la sostituzione;
-   - salva il risultato in un nuovo file (es. `output_sostituito.txt`).
-3. Rendi lo script eseguibile con `chmod +x`.
-4. Eseguilo su `frasi_cliniche.txt`.
+Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi parametri.
 
-### Come impostare i comandi
-- Definisci nello script variabili (`$1`, `$2`, `$3`, `$4`).
-- Usa `sed` nello script per la sostituzione globale.
-- Stampa un messaggio finale con il percorso del file generato.
-- Rendi eseguibile lo script e avvialo passando tutti i parametri richiesti.
-- Se serve, usa gli helper (`bash --help`, `sed --help`, `chmod --help`).
+### Cosa fare
+1. Apri il file e visualizza il contenuto (senza modificarlo).
+2. Individua nel codice:
+   - dove vengono letti i parametri (`$1`, `$2`, `$3`, `$4`);
+   - il comando che fa la sostituzione (`sed`);
+   - la riga che stampa il messaggio finale.
+3. Verifica che sia già eseguibile (`ls -l materiali/sostituisci_parola.sh`).
+4. Prova a eseguirlo su `materiali/frasi_cliniche.txt` usando lo script in `materiali/`.
+5. Verifica il file di output generato.
+
+### Aiutino (non soluzione completa)
+- Prima di eseguirlo, assicurati che abbia permessi di esecuzione.
+- Ricorda: lo script si aspetta **4 argomenti** in questo ordine:
+  - 1) file input
+  - 2) parola da cercare
+  - 3) parola sostitutiva
+  - 4) file output
+- Se non ricordi la sintassi, usa gli helper: `bash --help`, `chmod --help`, `sed --help`.
 
 ---
 
@@ -141,7 +147,3 @@ Cosa abbiamo imparato:
 5. automatizzare un compito semplice con uno script `.sh`.
 
 ---
-
-## Nota per l'istruttore
-
-Le soluzioni operative complete sono separate in `Lezioni/lezione1_pratica_bash/SOLUZIONI_ISTRUTTORE.md` e non sono incluse nel testo consegnato agli studenti.
