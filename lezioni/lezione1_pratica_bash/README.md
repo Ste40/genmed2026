@@ -1,144 +1,159 @@
-# Lezione 1 — Esercitazione Bash (base)
+# Lezione 1 — Esercitazione pratica Bash (base)
 
-Questa esercitazione usa file `.txt` creati nella cartella della lezione.
+Questa esercitazione è pensata per specializzandi biologi/medici con poca esperienza di terminale.
 
-Durata totale prevista: **60–75 minuti**.
+## Obiettivo
 
-## Materiali
+Lavorare su **file già presenti nella repository** e imparare operazioni base:
 
-File disponibili in `lezioni/lezione1_pratica_bash/materiali/`:
+- visualizzare contenuti;
+- contare caratteri/righe;
+- cercare parole o pattern;
+- sostituire testo;
+- salvare output con redirect e pipe.
 
-- `sequenza1.txt`
-- `referto_mock.txt`
-- `appunti_lezione.txt`
-- `frasi_cliniche.txt`
+Durata totale: **60–75 minuti**.
 
 ---
 
-## Uso dei comandi (senza soluzione)
+## File usati (già precaricati)
 
-- `ls`
-  - Uso: `ls`
-  - Uso: `ls -l`
-  - Uso: `ls <cartella>`
-- `cat`
-  - Uso: `cat <file>`
-- `head`
-  - Uso: `head <file>`
-  - Uso: `head -n <numero_righe> <file>`
-- `tail`
-  - Uso: `tail <file>`
-  - Uso: `tail -n <numero_righe> <file>`
-- `less`
-  - Uso: `less <file>` (uscita con `q`)
-- `echo`
+- `data/reference/mock_reference.fa`
+- `data/reference/mock_annotation.gff`
+- `data/reference/causative_variants.tsv`
+
+---
+
+## Usage rapido comandi
+
+- `ls` → elenca file/cartelle
+  - Uso: `ls`, `ls -l`, `ls data/reference`
+- `cat` → mostra contenuto completo
+  - Uso: `cat FILE`
+- `head` / `tail` → prime/ultime righe
+  - Uso: `head -n 5 FILE`, `tail -n 5 FILE`
+- `less` → visualizzazione scorrevole (`q` per uscire)
+  - Uso: `less FILE`
+- `echo` → stampa testo
   - Uso: `echo "testo"`
-- `grep`
-  - Uso: `grep "parola" <file>`
-  - Uso: `grep -i "parola" <file>`
-- `sed`
-  - Uso: `sed 's/testo_vecchio/testo_nuovo/' <file>`
-  - Uso: `sed 's/testo_vecchio/testo_nuovo/g' <file>`
-- `wc`
-  - Uso: `wc -m <file>` (caratteri)
-  - Uso: `wc -l <file>` (righe)
-- Redirect
-  - Uso: `comando > <file_output>`
-  - Uso: `comando >> <file_output>`
-- Pipe
+- `grep` → cerca stringhe/pattern
+  - Uso: `grep "pattern" FILE`
+- `sed` → sostituisce testo
+  - Uso: `sed 's/vecchio/nuovo/g' FILE`
+- `wc` → conta (righe/parole/caratteri)
+  - Uso: `wc -m FILE` (caratteri), `wc -l FILE` (righe)
+- `>` e `>>` → scrivi/aggiungi su file
+  - Uso: `comando > out.txt`, `comando >> out.txt`
+- `|` → collega più comandi
   - Uso: `comando1 | comando2`
 
 ---
 
-## Esercizio 1 — Orientamento e lettura file (10–12 min)
+## Esercizio 1 (facile) — Visualizzare un file FASTA
+**Tempo:** 10 minuti
 
-### Task
-1. Entrare nella root della repo.
-2. Elencare il contenuto della cartella `lezioni/lezione1_pratica_bash/materiali`.
-3. Visualizzare il contenuto completo di `referto_mock.txt`.
-4. Mostrare solo le prime 3 righe del referto.
-5. Mostrare solo le ultime 2 righe del referto.
-6. Aprire il referto con `less` e scorrere il testo.
+### Task step-by-step
+1. Vai nella root della repo.
+2. Elenca il contenuto di `data/reference`.
+3. Visualizza tutto `mock_reference.fa`.
+4. Mostra solo le prime 6 righe.
+5. Mostra solo le ultime 4 righe.
 
----
-
-## Esercizio 2 — Conteggi su testo e sequenze (12–15 min)
-
-### Task
-1. Calcolare quanti caratteri contiene `sequenza1.txt`.
-2. Calcolare quante righe contiene `sequenza1.txt`.
-3. Ripetere i due conteggi per `appunti_lezione.txt`.
-4. Salvare i risultati in `lezioni/lezione1_pratica_bash/output/conteggi.txt`.
-5. Aggiungere una riga finale nel file di output con data e ora tramite `echo`.
+### Comandi esempio
+```bash
+cd /workspace/genmed2026
+ls data/reference
+cat data/reference/mock_reference.fa
+head -n 6 data/reference/mock_reference.fa
+tail -n 4 data/reference/mock_reference.fa
+```
 
 ---
 
-## Esercizio 3 — Ricerca pattern biologici/testuali (12–15 min)
+## Esercizio 2 (facile-intermedio) — Contare caratteri e righe
+**Tempo:** 10–12 minuti
 
-### Task
-1. Cercare la parola `variante` in `referto_mock.txt`.
-2. Cercare in modo case-insensitive la parola `oncologia` in `referto_mock.txt`.
-3. Cercare la parola `sospetta` in `frasi_cliniche.txt`.
-4. Salvare solo le righe trovate al punto 3 in `output/righe_sospette.txt`.
-5. Visualizzare il file ottenuto con `cat` e con `less`.
+### Task step-by-step
+1. Conta quanti caratteri ha `mock_reference.fa`.
+2. Conta quante righe ha `mock_reference.fa`.
+3. Salva i risultati in `lezioni/lezione1_pratica_bash/output_es2.txt`.
+4. Aggiungi una riga di commento al file di output.
 
----
-
-## Esercizio 4 — Sostituzione testo e verifica (15 min)
-
-### Task
-1. Usare `sed` per sostituire nel file `frasi_cliniche.txt` la parola `sospetta` con `patogena`.
-2. Salvare il risultato in `output/frasi_modificate.txt`.
-3. Verificare con `grep` che nel nuovo file compaia `patogena`.
-4. Verificare con `grep` che nel nuovo file non compaia più `sospetta`.
-5. Aggiungere una nota di due righe in `output/log_esercizio4.txt` usando `>` e `>>`.
-
----
-
-## Esercizio 5 — Script `.sh` da creare in Binder (20 min)
-
-### Obiettivo
-Creare uno script Bash che:
-- legga una frase da file,
-- trovi una parola specifica,
-- sostituisca la parola,
-- stampi la frase aggiornata a terminale.
-
-### Vincoli
-- Non usare editor grafici.
-- Creare il file script direttamente da terminale (es. redirect/here-doc).
-
-### Task
-1. Creare il file `lezioni/lezione1_pratica_bash/sostituisci.sh` da terminale.
-2. Inserire nello script i seguenti passaggi logici:
-   - definizione di una variabile con frase iniziale;
-   - ricerca della parola target;
-   - sostituzione della parola con una nuova;
-   - stampa della frase aggiornata a terminale.
-3. Rendere eseguibile lo script.
-4. Eseguire lo script da terminale.
-5. Salvare l'output dello script in `output/output_script.txt`.
-
-### Usage utile per questo esercizio
-- Creazione file da terminale:
-  - `cat > nome_file <<'EOF'`
-  - `...contenuto...`
-  - `EOF`
-- Permessi esecuzione:
-  - `chmod +x nome_file.sh`
-- Esecuzione script:
-  - `./nome_file.sh`
-- Salvataggio output script:
-  - `./nome_file.sh > output.txt`
+### Comandi esempio
+```bash
+mkdir -p lezioni/lezione1_pratica_bash
+wc -m data/reference/mock_reference.fa
+wc -l data/reference/mock_reference.fa
+wc -m data/reference/mock_reference.fa > lezioni/lezione1_pratica_bash/output_es2.txt
+wc -l data/reference/mock_reference.fa >> lezioni/lezione1_pratica_bash/output_es2.txt
+echo "Controllo base completato su mock_reference.fa" >> lezioni/lezione1_pratica_bash/output_es2.txt
+cat lezioni/lezione1_pratica_bash/output_es2.txt
+```
 
 ---
 
-## Consegna consigliata
+## Esercizio 3 (intermedio) — Trovare una parola/pattern
+**Tempo:** 12–15 minuti
 
-Al termine, verificare che esistano nella cartella `lezioni/lezione1_pratica_bash/output/` almeno:
+### Task step-by-step
+1. Cerca nel file `causative_variants.tsv` tutte le righe che contengono `gene2`.
+2. Cerca tutte le righe che contengono `chr`.
+3. Salva solo le righe con `gene2` in un file dedicato.
+4. Apri il file salvato con `less`.
 
-- `conteggi.txt`
-- `righe_sospette.txt`
-- `frasi_modificate.txt`
-- `log_esercizio4.txt`
-- `output_script.txt`
+### Comandi esempio
+```bash
+grep "gene2" data/reference/causative_variants.tsv
+grep "chr" data/reference/causative_variants.tsv
+grep "gene2" data/reference/causative_variants.tsv > lezioni/lezione1_pratica_bash/varianti_gene2.tsv
+less lezioni/lezione1_pratica_bash/varianti_gene2.tsv
+```
+
+---
+
+## Esercizio 4 (intermedio) — Sostituire testo (Y → Z)
+**Tempo:** 12–15 minuti
+
+### Task step-by-step
+1. Prendi `mock_annotation.gff`.
+2. Sostituisci il testo `gene` con `GENE`.
+3. Salva il risultato in `annotation_edit.gff`.
+4. Verifica che `GENE` compaia nel nuovo file.
+
+### Comandi esempio
+```bash
+sed 's/gene/GENE/g' data/reference/mock_annotation.gff > lezioni/lezione1_pratica_bash/annotation_edit.gff
+grep "GENE" lezioni/lezione1_pratica_bash/annotation_edit.gff
+head -n 10 lezioni/lezione1_pratica_bash/annotation_edit.gff
+```
+
+---
+
+## Esercizio 5 (intermedio-avanzato base) — Pipeline con `|`
+**Tempo:** 15–20 minuti
+
+### Task step-by-step
+1. Cerca in `causative_variants.tsv` le righe che contengono `gene2`.
+2. Delle righe trovate, tieni solo quelle con `sospetto`.
+3. Salva il risultato in `gene2_sospetto.tsv`.
+4. Mostra quante righe ci sono nel risultato finale.
+
+### Comandi esempio
+```bash
+grep "gene2" data/reference/causative_variants.tsv | grep -i "sospetto"
+grep "gene2" data/reference/causative_variants.tsv | grep -i "sospetto" > lezioni/lezione1_pratica_bash/gene2_sospetto.tsv
+wc -l lezioni/lezione1_pratica_bash/gene2_sospetto.tsv
+cat lezioni/lezione1_pratica_bash/gene2_sospetto.tsv
+```
+
+---
+
+## Debrief finale (5 minuti)
+
+A fine esercitazione lo studente deve sapere:
+
+1. aprire e leggere rapidamente file biologici semplici;
+2. contare caratteri/righe;
+3. cercare pattern con `grep`;
+4. fare sostituzioni base con `sed`;
+5. combinare filtri con pipe `|` e salvare risultati con `>`/`>>`.
