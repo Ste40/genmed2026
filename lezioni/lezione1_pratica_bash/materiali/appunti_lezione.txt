@@ -1,0 +1,5 @@
+bash è una shell testuale usata in bioinformatica.
+I comandi permettono di esplorare file e cartelle.
+Con grep possiamo cercare parole in un testo.
+Con sed possiamo trasformare un testo senza aprire editor grafici.
+Le pipe permettono di concatenare più operazioni.

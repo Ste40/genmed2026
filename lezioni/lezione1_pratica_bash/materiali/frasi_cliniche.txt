@@ -1,0 +1,4 @@
+Il campione del paziente contiene una variante sospetta.
+Il campione è stato processato secondo protocollo.
+La variante sospetta richiede conferma con test ortogonale.
+La consulenza genetica verrà programmata a breve.
