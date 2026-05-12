@@ -43,6 +43,8 @@ Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
 - `|` → collega più comandi
 - `chmod +x` → rende eseguibile uno script
 
+Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per vedere opzioni e sintassi disponibili (es. `grep --help`, `sed --help`, `wc --help`).
+
 ---
 
 ## Esercizio 1 (facile) — Esplorazione file `.txt`
@@ -54,14 +56,12 @@ Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
 4. Mostra le prime 5 righe di `frasi_cliniche.txt`.
 5. Mostra le ultime 3 righe di `referto_mock.txt`.
 
-### Comandi esempio
-```bash
-cd /workspace/genmed2026
-ls Lezioni/lezione1_pratica_bash/materiali
-cat Lezioni/lezione1_pratica_bash/materiali/appunti_lezione.txt
-head -n 5 Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
-tail -n 3 Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt
-```
+### Come impostare i comandi
+- Usa un comando per spostarti nella cartella corretta.
+- Usa un comando per elencare i file di una directory specifica.
+- Usa un comando per visualizzare l'intero contenuto di un file `.txt`.
+- Usa un comando con opzione numerica per mostrare solo le prime N righe.
+- Usa un comando con opzione numerica per mostrare solo le ultime N righe.
 
 ---
 
@@ -73,14 +73,12 @@ tail -n 3 Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt
 3. Salva entrambi i risultati in `Lezioni/lezione1_pratica_bash/output_es2.txt`.
 4. Aggiungi una riga finale: `Controllo completato`.
 
-### Comandi esempio
-```bash
-wc -l Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
-wc -m Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt
-wc -l Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt > Lezioni/lezione1_pratica_bash/output_es2.txt
-wc -m Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt >> Lezioni/lezione1_pratica_bash/output_es2.txt
-echo "Controllo completato" >> Lezioni/lezione1_pratica_bash/output_es2.txt
-```
+### Come impostare i comandi
+- Usa `wc` con l'opzione per il conteggio delle righe.
+- Usa `wc` con l'opzione per il conteggio dei caratteri.
+- Reindirizza il primo output su file con `>` e aggiungi il secondo con `>>`.
+- Usa `echo` con append (`>>`) per aggiungere la riga finale.
+- Se hai dubbi sulle opzioni, consulta l'helper del comando (`wc --help`).
 
 ---
 
@@ -91,12 +89,11 @@ echo "Controllo completato" >> Lezioni/lezione1_pratica_bash/output_es2.txt
 2. Cerca tutte le righe che contengono `terapia` (senza distinzione maiuscole/minuscole).
 3. Salva le righe con `paziente` in `Lezioni/lezione1_pratica_bash/paziente_hits.txt`.
 
-### Comandi esempio
-```bash
-grep "paziente" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
-grep -i "terapia" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
-grep "paziente" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt > Lezioni/lezione1_pratica_bash/paziente_hits.txt
-```
+### Come impostare i comandi
+- Usa `grep` con pattern testuale e percorso del file.
+- Per ricerca case-insensitive usa l'opzione dedicata di `grep`.
+- Combina `grep` con redirect (`>`) per salvare i risultati su file.
+- Per vedere tutte le opzioni disponibili, usa `grep --help`.
 
 ---
 
@@ -108,11 +105,11 @@ grep "paziente" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt > Lez
 3. Salva il risultato in `referto_editato.txt`.
 4. Verifica che `monitorato` compaia nel nuovo file.
 
-### Comandi esempio
-```bash
-sed 's/stabile/monitorato/g' Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt > Lezioni/lezione1_pratica_bash/referto_editato.txt
-grep "monitorato" Lezioni/lezione1_pratica_bash/referto_editato.txt
-```
+### Come impostare i comandi
+- Usa `sed` con una sostituzione globale (`s/.../.../g`).
+- Reindirizza l'output su un nuovo file, senza sovrascrivere l'originale.
+- Verifica il risultato cercando il termine sostitutivo nel file prodotto.
+- Per opzioni e varianti, consulta `sed --help`.
 
 ---
 
@@ -129,26 +126,12 @@ Obiettivo: creare uno script che sostituisce una parola con un'altra in un file 
 3. Rendi lo script eseguibile con `chmod +x`.
 4. Eseguilo su `frasi_cliniche.txt`.
 
-### Esempio base di script
-```bash
-#!/usr/bin/env bash
-INPUT_FILE="$1"
-DA_CERCARE="$2"
-SOSTITUZIONE="$3"
-OUTPUT_FILE="$4"
-
-sed "s/${DA_CERCARE}/${SOSTITUZIONE}/g" "$INPUT_FILE" > "$OUTPUT_FILE"
-echo "File creato: $OUTPUT_FILE"
-```
-
-### Esempio esecuzione
-```bash
-chmod +x Lezioni/lezione1_pratica_bash/sostituisci_parola.sh
-Lezioni/lezione1_pratica_bash/sostituisci_parola.sh \
-  Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt \
-  paziente soggetto \
-  Lezioni/lezione1_pratica_bash/output_sostituito.txt
-```
+### Come impostare i comandi
+- Definisci nello script variabili positionali (`$1`, `$2`, `$3`, `$4`).
+- Usa `sed` nello script per la sostituzione globale.
+- Stampa un messaggio finale con il percorso del file generato.
+- Rendi eseguibile lo script e avvialo passando tutti i parametri richiesti.
+- Se serve, usa gli helper (`bash --help`, `sed --help`, `chmod --help`).
 
 ---
 
@@ -161,3 +144,9 @@ A fine esercitazione lo studente deve sapere:
 3. cercare pattern con `grep`;
 4. fare sostituzioni base con `sed`;
 5. automatizzare un compito semplice con uno script `.sh`.
+
+---
+
+## Nota per l'istruttore
+
+Le soluzioni operative complete sono separate in `Lezioni/lezione1_pratica_bash/SOLUZIONI_ISTRUTTORE.md` e non sono incluse nel testo consegnato agli studenti.
