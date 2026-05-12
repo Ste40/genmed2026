@@ -12,8 +12,6 @@ Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e 
 - salvare output con reindirizzamento e pipe;
 - creare un piccolo script `.sh`.
 
-Durata totale: **circa 60 minuti**.
-
 ---
 
 ## File usati (specifici della lezione 1)
@@ -101,7 +99,7 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 4. Verifica che `monitorato` compaia nel nuovo file.
 
 ### Come impostare i comandi
-- Usa `sed` con una sostituzione (`s/parolavecchia/parolanuova/g`).
+- Usa `sed` con una sostituzione.
 - Reindirizza l'output su un nuovo file, senza sovrascrivere l'originale.
 - Verifica il risultato cercando il termine sostitutivo nel file prodotto.
 - Per opzioni e varianti, consulta `sed --help`.
