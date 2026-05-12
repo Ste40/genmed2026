@@ -1,0 +1,163 @@
+# Lezione 1 — Esercitazione pratica Bash (base)
+
+Questa esercitazione è pensata per specializzandi biologi/medici con poca esperienza di terminale.
+
+## Obiettivo
+
+Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e imparare operazioni base:
+
+- visualizzare contenuti;
+- contare caratteri/righe;
+- cercare parole o pattern;
+- sostituire testo;
+- salvare output con redirect e pipe;
+- creare un piccolo script `.sh`.
+
+Durata totale: **circa 60 minuti**.
+
+---
+
+## File usati (specifici della lezione 1)
+
+Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
+
+- `appunti_lezione.txt`
+- `frasi_cliniche.txt`
+- `referto_mock.txt`
+- `sequenza1.txt`
+
+> Nota: per questa lezione **non** usare file FASTA/VCF/GFF.
+
+---
+
+## Usage rapido comandi
+
+- `ls` → elenca file/cartelle
+- `cat` → mostra contenuto completo
+- `head` / `tail` → prime/ultime righe
+- `less` → visualizzazione scorrevole (`q` per uscire)
+- `grep` → cerca stringhe/pattern
+- `wc` → conta righe/parole/caratteri
+- `sed` → sostituisce testo
+- `>` e `>>` → scrivi/aggiungi su file
+- `|` → collega più comandi
+- `chmod +x` → rende eseguibile uno script
+
+---
+
+## Esercizio 1 (facile) — Esplorazione file `.txt`
+**Tempo:** 10 minuti
+
+1. Vai nella root della repo.
+2. Elenca il contenuto di `Lezioni/lezione1_pratica_bash/materiali`.
+3. Visualizza tutto `appunti_lezione.txt`.
+4. Mostra le prime 5 righe di `frasi_cliniche.txt`.
+5. Mostra le ultime 3 righe di `referto_mock.txt`.
+
+### Comandi esempio
+```bash
+cd /workspace/genmed2026
+ls Lezioni/lezione1_pratica_bash/materiali
+cat Lezioni/lezione1_pratica_bash/materiali/appunti_lezione.txt
+head -n 5 Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
+tail -n 3 Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt
+```
+
+---
+
+## Esercizio 2 (facile-intermedio) — Conteggi e output
+**Tempo:** 10 minuti
+
+1. Conta quante righe ha `frasi_cliniche.txt`.
+2. Conta quanti caratteri ha `referto_mock.txt`.
+3. Salva entrambi i risultati in `Lezioni/lezione1_pratica_bash/output_es2.txt`.
+4. Aggiungi una riga finale: `Controllo completato`.
+
+### Comandi esempio
+```bash
+wc -l Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
+wc -m Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt
+wc -l Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt > Lezioni/lezione1_pratica_bash/output_es2.txt
+wc -m Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt >> Lezioni/lezione1_pratica_bash/output_es2.txt
+echo "Controllo completato" >> Lezioni/lezione1_pratica_bash/output_es2.txt
+```
+
+---
+
+## Esercizio 3 (intermedio) — Ricerca parole con `grep`
+**Tempo:** 10 minuti
+
+1. Cerca nel file `frasi_cliniche.txt` tutte le righe che contengono `paziente`.
+2. Cerca tutte le righe che contengono `terapia` (senza distinzione maiuscole/minuscole).
+3. Salva le righe con `paziente` in `Lezioni/lezione1_pratica_bash/paziente_hits.txt`.
+
+### Comandi esempio
+```bash
+grep "paziente" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
+grep -i "terapia" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt
+grep "paziente" Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt > Lezioni/lezione1_pratica_bash/paziente_hits.txt
+```
+
+---
+
+## Esercizio 4 (intermedio) — Sostituzione testo con `sed`
+**Tempo:** 10 minuti
+
+1. Prendi `referto_mock.txt`.
+2. Sostituisci la parola `stabile` con `monitorato`.
+3. Salva il risultato in `referto_editato.txt`.
+4. Verifica che `monitorato` compaia nel nuovo file.
+
+### Comandi esempio
+```bash
+sed 's/stabile/monitorato/g' Lezioni/lezione1_pratica_bash/materiali/referto_mock.txt > Lezioni/lezione1_pratica_bash/referto_editato.txt
+grep "monitorato" Lezioni/lezione1_pratica_bash/referto_editato.txt
+```
+
+---
+
+## Esercizio 5 (più difficile) — Mini script `.sh`
+**Tempo:** 20 minuti
+
+Obiettivo: creare uno script che sostituisce una parola con un'altra in un file `.txt`.
+
+1. Crea il file `Lezioni/lezione1_pratica_bash/sostituisci_parola.sh`.
+2. Inserisci uno script che:
+   - legge input file, parola da cercare, parola sostitutiva;
+   - usa `sed` per fare la sostituzione;
+   - salva il risultato in un nuovo file (es. `output_sostituito.txt`).
+3. Rendi lo script eseguibile con `chmod +x`.
+4. Eseguilo su `frasi_cliniche.txt`.
+
+### Esempio base di script
+```bash
+#!/usr/bin/env bash
+INPUT_FILE="$1"
+DA_CERCARE="$2"
+SOSTITUZIONE="$3"
+OUTPUT_FILE="$4"
+
+sed "s/${DA_CERCARE}/${SOSTITUZIONE}/g" "$INPUT_FILE" > "$OUTPUT_FILE"
+echo "File creato: $OUTPUT_FILE"
+```
+
+### Esempio esecuzione
+```bash
+chmod +x Lezioni/lezione1_pratica_bash/sostituisci_parola.sh
+Lezioni/lezione1_pratica_bash/sostituisci_parola.sh \
+  Lezioni/lezione1_pratica_bash/materiali/frasi_cliniche.txt \
+  paziente soggetto \
+  Lezioni/lezione1_pratica_bash/output_sostituito.txt
+```
+
+---
+
+## Debrief finale (5 minuti)
+
+A fine esercitazione lo studente deve sapere:
+
+1. orientarsi nelle cartelle e leggere file `.txt`;
+2. contare righe/caratteri;
+3. cercare pattern con `grep`;
+4. fare sostituzioni base con `sed`;
+5. automatizzare un compito semplice con uno script `.sh`.
