@@ -17,5 +17,6 @@
 ## Esercizio 4 — Sostituzione testo con `sed`
 - Soluzione:
 
-## Esercizio 5 — Mini script `.sh`
+## Esercizio 5 — Commentario su script `.sh`
+- Script già presente: `Lezioni/lezione1_pratica_bash/sostituisci_parola.sh`
 - Soluzione:

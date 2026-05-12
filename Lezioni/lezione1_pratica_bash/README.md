@@ -106,45 +106,28 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 
 ---
 
-## Esercizio 5 (più difficile) — Mini script `.sh` (versione semplificata)
+## Esercizio 5 (più difficile) — Commentario su script `.sh`
 **Tempo:** 20 minuti
 
-Obiettivo: creare uno script molto semplice (stile esempio "somma") che sostituisce una parola in un file.
+In questo esercizio lo script è **già pronto**: `Lezioni/lezione1_pratica_bash/sostituisci_parola.sh`.
 
-### 1) Crea il file script
-```bash
-cd Lezioni/lezione1_pratica_bash
-nano sostituisci_parola.sh
-```
+Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi parametri.
 
-### 2) Incolla questo contenuto
-```bash
-#!/usr/bin/env bash
-input_file="$1"
-parola_vecchia="$2"
-parola_nuova="$3"
-output_file="$4"
+### Cosa fare
+1. Apri il file e visualizza il contenuto (senza modificarlo).
+2. Individua nel codice:
+   - dove vengono letti i parametri (`$1`, `$2`, `$3`, `$4`);
+   - il comando che fa la sostituzione (`sed`);
+   - la riga che stampa il messaggio finale.
+3. Verifica che sia già eseguibile (`ls -l sostituisci_parola.sh`).
+4. Prova a eseguirlo su `materiali/frasi_cliniche.txt`.
+5. Verifica il file di output generato.
 
-sed "s/${parola_vecchia}/${parola_nuova}/g" "$input_file" > "$output_file"
-echo "File creato: $output_file"
-```
-
-### 3) Rendi eseguibile lo script
-```bash
-chmod +x sostituisci_parola.sh
-```
-
-### 4) Eseguilo (esempio pronto)
-```bash
-./sostituisci_parola.sh materiali/frasi_cliniche.txt paziente soggetto output_sostituito.txt
-```
-
-### 5) Controlla il risultato
-```bash
-cat output_sostituito.txt
-```
-
-> Se serve, usa gli helper: `bash --help`, `sed --help`, `chmod --help`.
+### Aiutino (non soluzione completa)
+- Prima di eseguirlo, assicurati che abbia permessi di esecuzione.
+- Ricorda: lo script si aspetta **4 argomenti** in questo ordine:
+  1) file input, 2) parola da cercare, 3) parola sostitutiva, 4) file output.
+- Se non ricordi la sintassi, usa gli helper: `bash --help`, `chmod --help`, `sed --help`.
 
 ---
 
