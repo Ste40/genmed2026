@@ -1,0 +1,13 @@
+##fileformat=VCFv4.2
+##source=mock_generator
+##reference=mock_reference_chr1_chr2
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SAMPLE_A	SAMPLE_B
+chr1	150	rsMock001	A	G	99	PASS	DP=40;AF=0.50	GT:GQ	0/1:88	0/0:99
+chr1	275	.	C	T	43	q10	DP=12;AF=0.25	GT:GQ	0/1:35	0/1:21
+chr1	500	rsMock003	G	GA	60	PASS	DP=18;AF=0.33	GT:GQ	0/1:44	0/0:50
+chr2	90	rsMock004	TT	T	75	PASS	DP=22;AF=0.45	GT:GQ	1/1:70	0/1:39
+chr2	401	.	A	C	12	LowQual	DP=6;AF=0.17	GT:GQ	0/1:14	0/0:12
