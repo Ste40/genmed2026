@@ -122,8 +122,7 @@ Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi
 4. Prova a eseguirlo su `materiali/frasi_cliniche.txt` usando lo script in `materiali/`.
 5. Verifica il file di output generato.
 
-### Aiutino (non soluzione completa)
-- Prima di eseguirlo, assicurati che abbia permessi di esecuzione.
+### Aiutino
 - Ricorda: lo script si aspetta **4 argomenti** in questo ordine:
   - 1) file input
   - 2) parola da cercare
