@@ -36,7 +36,6 @@ Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
 - `sed` → sostituisce testo
 - `>` e `>>` → scrivi/aggiungi su file
 - `|` → collega più comandi
-- `chmod +x` → rende eseguibile uno script
 
 Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per vedere opzioni e sintassi disponibili (es. `grep --help`, `sed --help`, `wc --help`).
 
