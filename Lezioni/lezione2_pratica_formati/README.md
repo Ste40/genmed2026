@@ -2,7 +2,7 @@
 
 ## Obiettivo
 
-Allenarsi a leggere e ispezionare file **FASTQ, SAM (proxy testuale del BAM) e VCF** usando solo i comandi base già visti nella lezione 1:
+Allenarsi a leggere e ispezionare file **FASTQ, SAM (BAM) e VCF** usando solo i comandi base già visti nella lezione 1:
 
 - `ls`, `cat`, `head`, `tail`, `less`
 - `grep`, `wc`, `sed`
