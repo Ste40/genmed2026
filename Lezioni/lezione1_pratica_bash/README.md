@@ -3,7 +3,7 @@
 
 ## Obiettivo
 
-Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e imparare operazioni base:
+Lavorare su un **file di testo `.txt` per imparare ad eseguire operazioni di base:
 
 - visualizzare contenuti;
 - contare caratteri e righe;
@@ -14,13 +14,13 @@ Lavorare su **file di testo `.txt` preparati appositamente** per la lezione 1 e 
 
 ---
 
-## File usati (specifici della lezione 1)
+## File da usare:
 
 Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
 
 - `appunti_lezione.txt`
 - `frasi_cliniche.txt`
-- `referto_mock.txt`
+- `referto.txt`
 - `sequenza1.txt`
 
 ---
