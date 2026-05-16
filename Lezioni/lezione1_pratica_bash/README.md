@@ -44,14 +44,14 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 
 ## Esercizio 1 (facile) — Esplorazione file `.txt`
 
-1. Vai nella cartella root.
+1. Mostra in quale cartella ti trovi.
 2. Elenca il contenuto di `Lezioni/lezione1_pratica_bash/materiali`.
 3. Visualizza tutto `appunti_lezione.txt`.
-4. Mostra le prime 5 righe di `frasi_cliniche.txt`.
+4. Mostra le prime 2 righe di `frasi_cliniche.txt`.
 5. Mostra le ultime 3 righe di `referto_mock.txt`.
 
 ### Come impostare i comandi
-- Usa un comando per spostarti nella cartella corretta.
+- Usa un comando per visualizzare la cartella corrente.
 - Usa un comando per elencare i file di una directory specifica.
 - Usa un comando per visualizzare l'intero contenuto di un file `.txt`.
 - Usa un comando con opzione numerica per mostrare solo le prime N righe.
@@ -79,12 +79,12 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 ## Esercizio 3 (intermedio) — Ricerca parole con `grep`
 
 1. Cerca nel file `frasi_cliniche.txt` tutte le righe che contengono `paziente`.
-2. Cerca tutte le righe che contengono `terapia` (senza distinzione maiuscole/minuscole).
+2. Cerca tutte le righe che iniziano con `terapia`.
 3. Salva le righe con `paziente` in `Lezioni/lezione1_pratica_bash/paziente_hits.txt`.
 
 ### Come impostare i comandi
 - Usa `grep` con pattern testuale e percorso del file.
-- Per ricerca case-insensitive usa l'opzione dedicata di `grep`.
+- Usa `^` per cercare le frasi che iniziano con una parola.
 - Combina `grep` con `>` per salvare i risultati su file.
 - Per vedere tutte le opzioni disponibili, usa `grep --help`.
 
@@ -123,8 +123,8 @@ Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi
 4. Prova a eseguirlo su `materiali/frasi_cliniche.txt` usando lo script in `materiali/`.
 5. Verifica il file di output generato.
 
-### Aiutino
-- Ricorda: lo script si aspetta **4 argomenti** in questo ordine:
+### Aiuto
+- Ricorda: lo script chiede in input **4 variabili** dette **argomenti** in questo ordine:
   - 1) file input
   - 2) parola da cercare
   - 3) parola sostitutiva
