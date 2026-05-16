@@ -98,13 +98,16 @@ Usa `mock_variants.vcf`.
 
 ---
 
-## Consegna consigliata (5 min finali)
+## Esercizio 5: stesura di un report
 
-Prepara nella cartella `Lezioni/lezione2_pratica_formati/`:
+Prepara nella cartella `Lezioni/lezione2_pratica_formati/` un file chiamato report.txt che riporti:
 
-- `output_es1_primo_record.txt`
-- `report_fastq.txt`
-- `allineamenti_chr1.sam`
-- `varianti_pass.vcf`
-- `comandi_usati.txt` (lista dei comandi che hai eseguito)
+- il numero di reads sequenziate (R1+R2)
+- la percentuale di reads non mappate
+- il numero di varianti identificate
+- il numero di varianti con `FILTER=PASS`
+
+### Suggerimenti
+- Aggiungi i risultati a report.txt con `echo` **senza** sovrascrivere report.txt
+- La percentuale può essere calcolata con questo comando `$(( X * 100 / Y ))`, sostituendo X e Y.
 
