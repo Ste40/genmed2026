@@ -44,7 +44,7 @@ Suggerimento generale: per ogni comando usa l'helper integrato (`--help`) per ve
 
 ## Esercizio 1 (facile) — Esplorazione file `.txt`
 
-1. Vai nella root della repo.
+1. Vai nella cartella root.
 2. Elenca il contenuto di `Lezioni/lezione1_pratica_bash/materiali`.
 3. Visualizza tutto `appunti_lezione.txt`.
 4. Mostra le prime 5 righe di `frasi_cliniche.txt`.
