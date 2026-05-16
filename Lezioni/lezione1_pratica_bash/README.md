@@ -22,6 +22,7 @@ Tutti i file sono in `Lezioni/lezione1_pratica_bash/materiali/`:
 - `frasi_cliniche.txt`
 - `referto.txt`
 - `sequenza1.txt`
+- `sostituisci_parola.sh`
 
 ---
 
