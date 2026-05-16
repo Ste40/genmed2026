@@ -133,14 +133,12 @@ Obiettivo: leggere lo script, capirne la logica e provare a eseguirlo con i tuoi
 
 ---
 
-## Debrief finale (5 minuti)
-
-Cosa abbiamo imparato:
+### Cosa abbiamo imparato:
 
 1. orientarsi nelle cartelle e leggere file `.txt`;
 2. contare righe/caratteri;
 3. cercare pattern con `grep`;
 4. fare sostituzioni base con `sed`;
-5. automatizzare un compito semplice con uno script `.sh`.
+5. leggere e interpretare uno script `.sh`;
 
 ---
