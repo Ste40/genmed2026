@@ -73,7 +73,6 @@ Usa `mock_alignments.sam`.
 
 ### Come impostare i comandi
 - Usa `grep '^@'` per header e `grep -v '^@'` per i record.
-- Cerca i cromosomi nella colonna RNAME con pattern tabulati (es. `\tchr1\t`).
 - Per `FLAG=4` cerca i record con pattern tabulato dedicato.
 - Per mantenere header + subset puoi unire output multipli nello stesso file.
 
